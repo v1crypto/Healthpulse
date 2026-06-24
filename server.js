@@ -7,26 +7,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const API_KEY = process.env.DEEPSEEK_API_KEY;
 const UPI_ID  = process.env.UPI_ID || 'your@upi';
+const MODEL   = 'deepseek/deepseek-v4-flash';
 
-// ── /api/chat ────────────────────────────────────────────────
+// /api/chat
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages, systemPrompt, temperature, maxTokens } = req.body;
-
     const allMessages = [];
-    if (systemPrompt) {
-      allMessages.push({ role: 'system', content: systemPrompt });
-    }
+    if (systemPrompt) allMessages.push({ role: 'system', content: systemPrompt });
     allMessages.push(...messages);
 
-    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`
+        'Authorization': `Bearer ${API_KEY}`,
+        'HTTP-Referer': 'https://healthpulse-ai-k9hn.onrender.com',
+        'X-Title': 'HealthPulse MedLearn'
       },
       body: JSON.stringify({
-        model: 'deepseek-chat',
+        model: MODEL,
         max_tokens: maxTokens || 1400,
         temperature: temperature || 0.3,
         messages: allMessages
@@ -35,26 +35,27 @@ app.post('/api/chat', async (req, res) => {
 
     const data = await response.json();
     if (data.error) return res.json({ success: false, error: data.error.message });
-
     res.json({ success: true, reply: data.choices[0].message.content });
   } catch (err) {
     res.json({ success: false, error: err.message });
   }
 });
 
-// ── /api/mcq ─────────────────────────────────────────────────
+// /api/mcq
 app.post('/api/mcq', async (req, res) => {
   try {
     const { prompt } = req.body;
 
-    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`
+        'Authorization': `Bearer ${API_KEY}`,
+        'HTTP-Referer': 'https://healthpulse-ai-k9hn.onrender.com',
+        'X-Title': 'HealthPulse MedLearn'
       },
       body: JSON.stringify({
-        model: 'deepseek-chat',
+        model: MODEL,
         max_tokens: 2000,
         messages: [{ role: 'user', content: prompt }]
       })
@@ -62,24 +63,23 @@ app.post('/api/mcq', async (req, res) => {
 
     const data = await response.json();
     if (data.error) return res.json({ success: false, error: data.error.message });
-
     res.json({ success: true, reply: data.choices[0].message.content });
   } catch (err) {
     res.json({ success: false, error: err.message });
   }
 });
 
-// ── /api/premium-list ────────────────────────────────────────
+// /api/premium-list
 app.get('/api/premium-list', (req, res) => {
   res.json({ premiumEmails: [] });
 });
 
-// ── /api/premium-status ──────────────────────────────────────
+// /api/premium-status
 app.get('/api/premium-status', (req, res) => {
   res.json({ success: true, isPremium: false });
 });
 
-// ── /api/create-payment ──────────────────────────────────────
+// /api/create-payment
 app.post('/api/create-payment', (req, res) => {
   const { amount, plan } = req.body;
   const note = encodeURIComponent(`HealthPulse Premium ${plan}`);
@@ -87,7 +87,7 @@ app.post('/api/create-payment', (req, res) => {
   res.json({ success: true, paymentUrl });
 });
 
-// ── Serve index.html ─────────────────────────────────────────
+// Serve index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
