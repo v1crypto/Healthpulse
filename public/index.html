@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
@@ -276,9 +277,87 @@
     .mcq-q{font-size:16px}
     .mcq-opt{padding:12px 14px;font-size:13px}
   }
+
+  /* ══ AUTH SCREEN ══ */
+  .auth-screen{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+  .auth-screen.hidden{display:none}
+  .auth-box{position:relative;z-index:1;width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:0}
+  .auth-logo{width:80px;height:80px;border-radius:26px;background:var(--grad-main);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#000;font-family:'Outfit';box-shadow:0 0 50px rgba(194,255,61,.45),0 0 90px rgba(157,108,255,.3);animation:afloat 5s ease-in-out infinite;margin-bottom:18px}
+  .auth-brand{font-size:28px;font-weight:900;letter-spacing:-.02em;font-family:'Outfit';margin-bottom:4px}
+  .auth-brand span{background:var(--grad-main);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .auth-sub{font-size:10px;font-family:'JetBrains Mono';font-weight:700;letter-spacing:.18em;color:var(--lime);background:rgba(194,255,61,.08);border:1px solid rgba(194,255,61,.25);padding:5px 14px;border-radius:99px;margin-bottom:16px}
+  .auth-tagline{color:var(--sub);font-size:15px;text-align:center;line-height:1.55;margin-bottom:16px;font-weight:400}
+  .auth-sectors{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:28px}
+  .auth-sector{background:var(--surface);border:1px solid var(--border);color:var(--sub);font-size:11px;padding:5px 11px;border-radius:99px;font-family:'JetBrains Mono';font-weight:600}
+  .auth-form{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:24px;padding:24px;margin-bottom:16px;backdrop-filter:blur(12px)}
+  .auth-label{display:block;font-size:12px;font-weight:700;color:var(--sub);font-family:'JetBrains Mono';letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+  .auth-input{width:100%;background:rgba(255,255,255,.05);border:1.5px solid var(--border);color:var(--text);padding:14px 16px;border-radius:16px;font-size:16px;font-family:'Outfit';font-weight:500;outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:8px}
+  .auth-input:focus{border-color:rgba(194,255,61,.5);box-shadow:0 0 0 4px rgba(194,255,61,.08)}
+  .auth-input::placeholder{color:rgba(255,255,255,.2)}
+  .auth-error{font-size:12px;color:var(--red);font-family:'Outfit';font-weight:600;margin-bottom:10px;display:none}
+  .auth-error.show{display:block}
+  .auth-btn{width:100%;background:var(--grad-main);border:none;color:#000;padding:15px;border-radius:16px;font-size:16px;font-weight:800;cursor:pointer;font-family:'Outfit';letter-spacing:.01em;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 24px rgba(194,255,61,.3);margin-top:4px}
+  .auth-btn:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(194,255,61,.4)}
+  .auth-btn:active{transform:scale(.98)}
+  .auth-note{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;font-family:'JetBrains Mono';line-height:1.5}
+  .auth-feats{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+  .auth-feat{background:rgba(157,108,255,.08);border:1px solid rgba(157,108,255,.2);color:var(--violet);font-size:11px;padding:5px 11px;border-radius:99px;font-family:'JetBrains Mono';font-weight:600}
+  .auth-otp-info{background:rgba(194,255,61,.06);border:1px solid rgba(194,255,61,.2);border-radius:14px;padding:12px 16px;font-size:13px;color:var(--sub);margin-bottom:16px;text-align:center;line-height:1.5}
+  .auth-back-btn{width:100%;background:transparent;border:1px solid var(--border);color:var(--sub);padding:12px;border-radius:16px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Outfit';margin-top:8px;transition:border-color .2s}
+  .auth-back-btn:hover{border-color:var(--border-2);color:var(--text)}
+  .tb-logout-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--sub);width:34px;height:34px;border-radius:10px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+  .tb-logout-btn:hover{background:rgba(255,61,110,.15);border-color:var(--red);color:var(--red)}
 </style>
 </head>
 <body>
+<!-- ══ SIGNUP / LOGIN SCREEN ══ -->
+<div id="authScreen" class="auth-screen">
+  <div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at top,#0a0612 0%,#000 60%)"></div>
+  <div class="auth-box">
+    <div class="auth-logo">HP</div>
+    <div class="auth-brand">HealthPulse <span>Pro</span></div>
+    <div class="auth-sub">✦ POWERED BY VEDA AI ✦</div>
+    <p class="auth-tagline">India's Medical AI Tutor<br>MBBS · BAMS · BDS · Nursing · Pharmacy 🇮🇳</p>
+    <div class="auth-sectors">
+      <span class="auth-sector">🏥 MBBS/MD</span>
+      <span class="auth-sector">🌿 BAMS</span>
+      <span class="auth-sector">🦷 BDS</span>
+      <span class="auth-sector">💊 Pharmacy</span>
+      <span class="auth-sector">🩺 Nursing</span>
+      <span class="auth-sector">🏃 Physio</span>
+    </div>
+
+    <!-- STEP 1: Email -->
+    <div class="auth-form" id="authStep1">
+      <label class="auth-label">📧 Email Address</label>
+      <input type="email" id="authEmail" class="auth-input" placeholder="student@gmail.com" autocomplete="email" inputmode="email" onkeydown="if(event.key==='Enter')handleSignup()">
+      <div class="auth-error" id="authError">⚠️ Valid email डालो (@ होना चाहिए)</div>
+      <button class="auth-btn" id="authSendBtn" onclick="handleSignup()">🚀 OTP भेजो →</button>
+      <p class="auth-note">Email पर 6-digit code आएगा · No password · No spam</p>
+    </div>
+
+    <!-- STEP 2: OTP -->
+    <div class="auth-form" id="authStep2" style="display:none">
+      <div class="auth-otp-info">
+        📬 OTP भेजा गया <span id="otpEmailShow" style="color:var(--lime);font-weight:700"></span> पर
+      </div>
+      <label class="auth-label">🔑 6-Digit OTP Code</label>
+      <input type="number" id="authOtp" class="auth-input" placeholder="123456" inputmode="numeric" maxlength="6" onkeydown="if(event.key==='Enter')verifyOtp()">
+      <div class="auth-error" id="otpError">⚠️ OTP गलत है — दोबारा try करो</div>
+      <button class="auth-btn" id="authVerifyBtn" onclick="verifyOtp()">✅ Verify करो →</button>
+      <button class="auth-back-btn" onclick="backToEmail()">← Email बदलो</button>
+      <p class="auth-note">OTP 10 मिनट में expire होगा · Spam folder भी check करो</p>
+    </div>
+
+    <div class="auth-feats">
+      <span class="auth-feat">📄 PDF Upload</span>
+      <span class="auth-feat">🎤 Voice Input</span>
+      <span class="auth-feat">📝 MCQ Test</span>
+      <span class="auth-feat">🇮🇳 Hindi + English</span>
+    </div>
+  </div>
+</div>
+
 <div id="bg"></div>
 <div id="grid"></div>
 
@@ -306,6 +385,7 @@
       <button class="lb" id="lb-hi" onclick="setLang('hi')">हिं</button>
     </div>
     <button class="tb-icon-btn" id="tbAdminBtn" onclick="showAdminPanel()" title="Admin Panel" style="display:none">⚙️</button>
+    <button class="tb-logout-btn" onclick="logoutUser()" title="Logout">⏻</button>
   </div>
 </div>
 
@@ -763,9 +843,14 @@ function adminManualRemove(e) {
 // ORIGINAL APP CODE
 // ============================================================
 
+// ── Supabase Init ────────────────────────────────────────────
+const SUPA_URL = 'https://rnmovgktobwyrifwrrji.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJubW92Z2t0b2J3eXJpZndycmppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNTg1NTIsImV4cCI6MjA5NzkzNDU1Mn0.3iI_TZ4Q6awJ6rcJaTjBqtmPOgL36npGyDImfzN4ARo';
+const sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+
 let premiumEmails = [];
 let isPremiumUser = false;
-let currentUserEmail = localStorage.getItem('userEmail');
+let currentUserEmail = null;
 let dailyCount = 0;
 let DAILY_LIMIT = 5;
 const AD_REWARD = 5;
@@ -775,27 +860,104 @@ let adWatchCount = 0;
 let cooldownEndTime = null;
 let countdownInterval = null;
 
+// Check existing session on load
+sb.auth.getSession().then(({ data: { session } }) => {
+  if (session?.user?.email) {
+    currentUserEmail = session.user.email;
+    localStorage.setItem('userEmail', currentUserEmail);
+    document.getElementById('authScreen').classList.add('hidden');
+    fetchPremiumList();
+  } else {
+    currentUserEmail = localStorage.getItem('userEmail');
+    if (currentUserEmail) {
+      document.getElementById('authScreen').classList.add('hidden');
+      fetchPremiumList();
+    } else {
+      document.getElementById('authScreen').classList.remove('hidden');
+    }
+  }
+});
+
 function checkAuth() {
   if (!currentUserEmail) {
-    let email = prompt("🚀 Welcome to HealthPulse Pro ✨\n\nEnter your email to sign up / log in:\n(We collect data to improve our AI)", "");
-    if (email && email.includes('@')) {
-      currentUserEmail = email;
-      localStorage.setItem('userEmail', email);
-      fetchPremiumList().then(() => location.reload());
-    } else { 
-      if (email !== null) alert("A valid email is required."); 
-    }
+    document.getElementById('authScreen').classList.remove('hidden');
     return false;
   }
+  document.getElementById('authScreen').classList.add('hidden');
   return true;
 }
 
-function logoutUser() { 
-  localStorage.removeItem('userEmail'); 
+async function handleSignup() {
+  const input = document.getElementById('authEmail');
+  const errEl = document.getElementById('authError');
+  const btn = document.getElementById('authSendBtn');
+  const email = input.value.trim().toLowerCase();
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    errEl.classList.add('show');
+    input.focus();
+    return;
+  }
+  errEl.classList.remove('show');
+  btn.textContent = '⏳ भेज रहे हैं...';
+  btn.disabled = true;
+  try {
+    const { error } = await sb.auth.signInWithOtp({ email });
+    if (error) throw error;
+    // Show OTP step
+    document.getElementById('authStep1').style.display = 'none';
+    document.getElementById('authStep2').style.display = 'block';
+    document.getElementById('otpEmailShow').textContent = email;
+    setTimeout(() => document.getElementById('authOtp').focus(), 100);
+  } catch(err) {
+    errEl.textContent = '⚠️ Error: ' + (err.message || 'दोबारा try करो');
+    errEl.classList.add('show');
+    btn.textContent = '🚀 OTP भेजो →';
+    btn.disabled = false;
+  }
+}
+
+async function verifyOtp() {
+  const email = document.getElementById('authEmail').value.trim().toLowerCase();
+  const otp = document.getElementById('authOtp').value.trim();
+  const errEl = document.getElementById('otpError');
+  const btn = document.getElementById('authVerifyBtn');
+  if (!otp || otp.length < 6) {
+    errEl.classList.add('show');
+    return;
+  }
+  btn.textContent = '⏳ Verify हो रहा है...';
+  btn.disabled = true;
+  try {
+    const { data, error } = await sb.auth.verifyOtp({ email, token: otp, type: 'email' });
+    if (error) throw error;
+    currentUserEmail = data.user.email;
+    localStorage.setItem('userEmail', currentUserEmail);
+    document.getElementById('authScreen').classList.add('hidden');
+    fetchPremiumList();
+  } catch(err) {
+    errEl.textContent = '⚠️ OTP गलत है या expire हो गया — दोबारा try करो';
+    errEl.classList.add('show');
+    btn.textContent = '✅ Verify करो →';
+    btn.disabled = false;
+  }
+}
+
+function backToEmail() {
+  document.getElementById('authStep1').style.display = 'block';
+  document.getElementById('authStep2').style.display = 'none';
+  document.getElementById('authSendBtn').textContent = '🚀 OTP भेजो →';
+  document.getElementById('authSendBtn').disabled = false;
+  document.getElementById('authOtp').value = '';
+}
+
+async function logoutUser() {
+  if (!confirm('Logout करना चाहते हो?')) return;
+  await sb.auth.signOut();
+  localStorage.removeItem('userEmail');
   localStorage.removeItem('hp_daily_count_' + currentUserEmail);
   localStorage.removeItem('hp_count_date_' + currentUserEmail);
   localStorage.removeItem('cooldown_end_' + currentUserEmail);
-  location.reload(); 
+  location.reload();
 }
 
 async function fetchPremiumList() {
@@ -829,25 +991,20 @@ async function fetchPremiumList() {
 async function checkPremiumExpiry() {
   const email = localStorage.getItem('userEmail');
   if (!email) return;
-  
   try {
     const response = await fetch(`${BACKEND_URL}/api/premium-status?email=${encodeURIComponent(email)}`);
-    const data = await response.json();
-    
+    const text = await response.text();
+    if (!text || text.trim().startsWith('<')) return; // HTML मिली तो ignore करो
+    const data = JSON.parse(text);
+    const statusEl = document.getElementById('premiumStatus');
+    if (!statusEl) return;
     if (data.success && data.isPremium) {
-      // Show expiry info in premium page
-      const statusEl = document.getElementById('premiumStatus');
-      if (statusEl) {
-        statusEl.innerHTML = `👑 Premium active · ${data.daysLeft} days remaining · Expires on ${new Date(data.expiry).toLocaleDateString()}`;
-      }
-    } else if (data.success && !data.isPremium) {
-      const statusEl = document.getElementById('premiumStatus');
-      if (statusEl) {
-        statusEl.innerHTML = '⏰ Premium expired or not active. Upgrade now!';
-      }
+      statusEl.innerHTML = `👑 Premium active · Expires on ${new Date(data.expiry).toLocaleDateString()}`;
+    } else {
+      statusEl.innerHTML = '⏰ Premium expired or not active. Upgrade now!';
     }
-  } catch (error) {
-    console.error('Error checking premium expiry:', error);
+  } catch (e) {
+    // Silent fail — local testing में normal है
   }
 }
 
