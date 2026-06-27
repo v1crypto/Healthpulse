@@ -332,21 +332,29 @@
       <label class="auth-label">📧 Email Address</label>
       <input type="email" id="authEmail" class="auth-input" placeholder="student@gmail.com" autocomplete="email" inputmode="email" onkeydown="if(event.key==='Enter')handleSignup()">
       <div class="auth-error" id="authError">⚠️ Valid email डालो (@ होना चाहिए)</div>
-      <button class="auth-btn" id="authSendBtn" onclick="handleSignup()">🚀 OTP भेजो →</button>
+      <button class="auth-btn" id="authSendBtn" onclick="handleSignup()">🚀 Login Link भेजो →</button>
       <p class="auth-note">Email पर 6-digit code आएगा · No password · No spam</p>
     </div>
 
-    <!-- STEP 2: OTP -->
+    <!-- STEP 2: Magic Link Sent -->
     <div class="auth-form" id="authStep2" style="display:none">
-      <div class="auth-otp-info">
-        📬 OTP भेजा गया <span id="otpEmailShow" style="color:var(--lime);font-weight:700"></span> पर
+      <div class="auth-otp-info" style="text-align:center;padding:20px 16px">
+        <div style="font-size:48px;margin-bottom:12px">📬</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px">Email चेक करो!</div>
+        <div style="font-size:13px;color:var(--sub);line-height:1.6">
+          <span id="otpEmailShow" style="color:var(--lime);font-weight:700"></span> पर<br>
+          Login link भेज दिया गया है
+        </div>
       </div>
-      <label class="auth-label">🔑 6-Digit OTP Code</label>
-      <input type="number" id="authOtp" class="auth-input" placeholder="123456" inputmode="numeric" maxlength="6" onkeydown="if(event.key==='Enter')verifyOtp()">
-      <div class="auth-error" id="otpError">⚠️ OTP गलत है — दोबारा try करो</div>
-      <button class="auth-btn" id="authVerifyBtn" onclick="verifyOtp()">✅ Verify करो →</button>
-      <button class="auth-back-btn" onclick="backToEmail()">← Email बदलो</button>
-      <p class="auth-note">OTP 10 मिनट में expire होगा · Spam folder भी check करो</p>
+      <div style="background:rgba(194,255,61,.06);border:1px solid rgba(194,255,61,.2);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:12px;color:var(--sub);line-height:1.7">
+          1️⃣ Gmail खोलो<br>
+          2️⃣ Supabase की email में <b style="color:var(--lime)">"Sign in"</b> link दबाओ<br>
+          3️⃣ App automatically खुल जाएगी! ✅
+        </div>
+      </div>
+      <button class="auth-back-btn" onclick="backToEmail()">← दूसरी Email use करो</button>
+      <p class="auth-note">Link 10 मिनट में expire होगा · Spam folder भी check करो</p>
     </div>
 
     <div class="auth-feats">
@@ -878,6 +886,16 @@ sb.auth.getSession().then(({ data: { session } }) => {
   }
 });
 
+// Magic link से वापस आने पर auto-login
+sb.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session?.user?.email) {
+    currentUserEmail = session.user.email;
+    localStorage.setItem('userEmail', currentUserEmail);
+    document.getElementById('authScreen').classList.add('hidden');
+    fetchPremiumList();
+  }
+});
+
 function checkAuth() {
   if (!currentUserEmail) {
     document.getElementById('authScreen').classList.remove('hidden');
@@ -901,17 +919,18 @@ async function handleSignup() {
   btn.textContent = '⏳ भेज रहे हैं...';
   btn.disabled = true;
   try {
-    const { error } = await sb.auth.signInWithOtp({ email });
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.origin }
+    });
     if (error) throw error;
-    // Show OTP step
     document.getElementById('authStep1').style.display = 'none';
     document.getElementById('authStep2').style.display = 'block';
     document.getElementById('otpEmailShow').textContent = email;
-    setTimeout(() => document.getElementById('authOtp').focus(), 100);
   } catch(err) {
     errEl.textContent = '⚠️ Error: ' + (err.message || 'दोबारा try करो');
     errEl.classList.add('show');
-    btn.textContent = '🚀 OTP भेजो →';
+    btn.textContent = '🚀 Login Link भेजो →';
     btn.disabled = false;
   }
 }
@@ -945,7 +964,7 @@ async function verifyOtp() {
 function backToEmail() {
   document.getElementById('authStep1').style.display = 'block';
   document.getElementById('authStep2').style.display = 'none';
-  document.getElementById('authSendBtn').textContent = '🚀 OTP भेजो →';
+  document.getElementById('authSendBtn').textContent = '🚀 Login Link भेजो →';
   document.getElementById('authSendBtn').disabled = false;
   document.getElementById('authOtp').value = '';
 }
