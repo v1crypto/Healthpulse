@@ -596,40 +596,71 @@ function initiatePayment(amount, plan) {
 }
 
 async function processPayment() {
-  const email = localStorage.getItem('userEmail');
-  if (!email) {
-    alert('Please login first!');
-    return;
-  }
-  
+  const email = currentUserEmail || localStorage.getItem('userEmail');
+  if (!email) { alert('पहले Login करो!'); return; }
+
   const btn = document.getElementById('payNowBtn');
   btn.textContent = '⏳ Processing...';
   btn.disabled = true;
-  
+
   try {
-    const response = await fetch(`${BACKEND_URL}/api/create-payment`, {
+    // Razorpay Order बनाओ
+    const res = await fetch(`${BACKEND_URL}/api/create-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        amount: paymentAmount,
-        email: email,
-        plan: paymentPlan,
-        phone: '9999999999'
-      })
+      body: JSON.stringify({ amount: paymentAmount, plan: paymentPlan })
     });
-    
-    const data = await response.json();
-    
-    if (data.success) {
-      alert('✅ Payment initiated! Redirecting to UPI...');
-      window.location.href = data.paymentUrl;
-    } else {
-      alert('❌ Payment failed: ' + data.error);
+    const data = await res.json();
+    if (!data.success) {
+      alert('Order Error: ' + data.error);
       btn.textContent = '💳 Pay Now';
       btn.disabled = false;
+      return;
     }
-  } catch (error) {
-    alert('❌ Error: ' + error.message);
+
+    // Razorpay Checkout खोलो
+    const options = {
+      key: data.keyId,
+      amount: data.amount,
+      currency: 'INR',
+      name: 'HealthPulse Pro',
+      description: paymentPlan === 'yearly' ? 'Yearly Plan' : 'Monthly Plan',
+      order_id: data.orderId,
+      prefill: { email },
+      theme: { color: '#c2ff3d' },
+      handler: async function(response) {
+        const verifyRes = await fetch(`${BACKEND_URL}/api/verify-payment`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+            email,
+            plan: paymentPlan
+          })
+        });
+        const verifyData = await verifyRes.json();
+        if (verifyData.success) {
+          isPremiumUser = true;
+          localStorage.setItem('isPremium_' + email, 'true');
+          alert('🎉 Premium Activated! Welcome to HealthPulse Pro!');
+          location.reload();
+        } else {
+          alert('⚠️ Verify Error: ' + verifyData.error);
+        }
+      },
+      modal: {
+        ondismiss: function() {
+          btn.textContent = '💳 Pay Now';
+          btn.disabled = false;
+        }
+      }
+    };
+    const rzp = new Razorpay(options);
+    rzp.open();
+  } catch (err) {
+    alert('Error: ' + err.message);
     btn.textContent = '💳 Pay Now';
     btn.disabled = false;
   }
