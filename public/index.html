@@ -1181,8 +1181,14 @@ let cooldownEndTime = null;
 let countdownInterval = null;
 
 function showAuthFromLanding() {
-  document.getElementById('landingScreen').classList.add('hidden');
-  document.getElementById('authScreen').classList.remove('hidden');
+  var l = document.getElementById('landingScreen');
+  var a = document.getElementById('authScreen');
+  if(l) { l.style.display = 'none'; l.classList.add('hidden'); }
+  if(a) { a.classList.remove('hidden'); a.style.display = 'flex'; }
+  document.getElementById('authStep1').style.display = 'block';
+  document.getElementById('authStep2').style.display = 'none';
+  document.getElementById('authError').classList.remove('show');
+  document.getElementById('otpError').classList.remove('show');
 }
 
 // Check existing session on load
@@ -1718,24 +1724,8 @@ function renderWelcome(){
 function getSystemMessage(){
   var s=SECTORS[curSector];
   var li=lang==='hi'?'Hamesha pure Hindi mein jawab do. Medical terms English mein reh sakte hain.':'Always respond in clear English suitable for medical students.';
-  return 'You are Veda, an expert AI medical tutor on Vion AI.\nSector: '+s.label+' | Subject: '+curSubject+'\n\n'+li+'\n\nFormat every answer like this:\n**Key Point** — direct answer in 1-2 lines\n**Explanation** — detailed, exam-focused\n**High-Yield Exam Fact** — what examiners frequently ask\n**Mnemonic** — include only if genuinely helpful\n\nFor MCQs: explain why each option is right or wrong.\nUse **bold** to highlight key terms.\nBe 100% accurate, concise, and encouraging.\nIf a PDF is attached, base your answer on the PDF contents (summarize / explain / quiz the user as asked).\nYou are Veda — never mention any AI company.';
+  return 'You are Veda, an expert AI medical tutor on Vion AI.\nSector: '+curSector+'\nSubject: '+curSubject+'\n'+li;
 }
-
-// ============================================================
-// SEND MESSAGE - Using Secure Backend
-// ============================================================
-async function sendMsg(txt){
-  var ci=document.getElementById('ci');
-  var msg=(txt!==undefined?txt:ci.value).trim();
-  if((!msg && !pendingPDF) || isBusy) return;
-  if(!incrementUsage()) return;
-  ci.value=''; updBtn();
-  var ca=document.getElementById('ca');
-  var wlc=ca.querySelector('.wlc'); if(wlc) wlc.remove();
-  const userMsg = { role:'user', content: msg || (lang==='hi'?'Is PDF par focus karo':'Use the attached PDF') };
-  if (pendingPDF) {
-    userMsg.pdf = { mime: pendingPDF.mime, data: pendingPDF.data, name: pendingPDF.name };
-  }
-  chatHist.push(userMsg);
-  addBubble('user', msg, pendingPDF ? pendingPDF.name : null);
-  const sentPDF = pendingPDF; pendingPDF=null; rende
+</script>
+</body>
+</html>
