@@ -595,7 +595,7 @@
 </div>
 
 <!-- ══ SIGNUP / LOGIN SCREEN ══ -->
-<div id="authScreen" class="auth-screen">
+<div id="authScreen" class="auth-screen hidden">
   <div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at top,#0a0612 0%,#000 60%)"></div>
   <div class="auth-box">
     <div class="auth-logo">V</div>
@@ -1188,6 +1188,7 @@ function showAuthFromLanding() {
 // Check existing session on load
 sb.auth.getSession().then(({ data: { session } }) => {
   if (session?.user?.email) {
+    // Already logged in — skip landing + auth, go to app
     currentUserEmail = session.user.email;
     localStorage.setItem('userEmail', currentUserEmail);
     document.getElementById('landingScreen').classList.add('hidden');
@@ -1196,11 +1197,12 @@ sb.auth.getSession().then(({ data: { session } }) => {
   } else {
     currentUserEmail = localStorage.getItem('userEmail');
     if (currentUserEmail) {
+      // Remembered user — skip landing + auth, go to app
       document.getElementById('landingScreen').classList.add('hidden');
       document.getElementById('authScreen').classList.add('hidden');
       fetchPremiumList();
     } else {
-      // Show landing page first!
+      // New visitor — show landing page
       document.getElementById('landingScreen').classList.remove('hidden');
       document.getElementById('authScreen').classList.add('hidden');
     }
@@ -1212,6 +1214,7 @@ sb.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session?.user?.email) {
     currentUserEmail = session.user.email;
     localStorage.setItem('userEmail', currentUserEmail);
+    document.getElementById('landingScreen').classList.add('hidden');
     document.getElementById('authScreen').classList.add('hidden');
     fetchPremiumList();
   }
@@ -1735,11 +1738,4 @@ async function sendMsg(txt){
   }
   chatHist.push(userMsg);
   addBubble('user', msg, pendingPDF ? pendingPDF.name : null);
-  const sentPDF = pendingPDF; pendingPDF=null; renderAttachBar();
-  isBusy=true;
-  var lid=addLoader();
-  try{
-    var reply = await callDeepSeek(getSystemMessage(), chatHist);
-    rmNode(lid);
-    addBubble('ai',reply);
-    chatHist.push({role:'assist
+  const sentPDF = pendingPDF; pendingPDF=null; rende
