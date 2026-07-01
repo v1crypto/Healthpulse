@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>HealthPulse Pro · Veda AI ✨</title>
+<title>Vion AI · Veda AI ✨</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -308,15 +308,298 @@
   .auth-back-btn:hover{border-color:var(--border-2);color:var(--text)}
   .tb-logout-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--sub);width:34px;height:34px;border-radius:10px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
   .tb-logout-btn:hover{background:rgba(255,61,110,.15);border-color:var(--red);color:var(--red)}
+
+
+  /* ════════════════════════════════
+     VION AI — LANDING PAGE
+  ════════════════════════════════ */
+  .lp{position:fixed;inset:0;z-index:9998;background:#050508;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column}
+  .lp.hidden{display:none}
+
+  /* NAV */
+  .lp-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(5,5,8,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .lp-brand{display:flex;align-items:center;gap:9px}
+  .lp-brand-icon{width:32px;height:32px;border-radius:9px;background:var(--grad-main);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#000;font-family:'Outfit'}
+  .lp-brand-name{font-size:16px;font-weight:800;font-family:'Outfit';letter-spacing:-.02em;color:#f0f0f5}
+  .lp-brand-name em{font-style:normal;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lp-nav-login{background:transparent;border:1.5px solid rgba(255,255,255,.15);color:#f0f0f5;padding:7px 16px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit';transition:border-color .2s}
+  .lp-nav-login:hover{border-color:rgba(194,255,61,.5)}
+
+  /* HERO */
+  .lp-hero{padding:52px 22px 40px;position:relative;overflow:hidden}
+  .lp-hero::before{content:'';position:absolute;top:-60px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(157,108,255,.18) 0%,transparent 70%);pointer-events:none}
+  .lp-hero::after{content:'';position:absolute;bottom:-40px;left:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(194,255,61,.1) 0%,transparent 70%);pointer-events:none}
+  .lp-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(194,255,61,.07);border:1px solid rgba(194,255,61,.2);color:var(--lime);font-size:10px;font-family:'JetBrains Mono';font-weight:700;letter-spacing:.12em;padding:5px 12px;border-radius:99px;margin-bottom:22px;text-transform:uppercase}
+  .lp-h1{font-size:44px;font-weight:900;font-family:'Outfit';line-height:1.05;letter-spacing:-.025em;color:#f0f0f5;margin-bottom:14px}
+  .lp-h1 .accent{background:linear-gradient(120deg,#c2ff3d 0%,#00e5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lp-hero-sub{font-size:15px;color:#7070a0;line-height:1.6;margin-bottom:28px;max-width:300px}
+  .lp-hero-sub strong{color:#b0b0d0;font-weight:600}
+
+  /* DEMO CHAT CARD */
+  .lp-demo{background:#0d0d18;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:16px;margin-bottom:28px;position:relative;z-index:1}
+  .lp-demo-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .lp-demo-avatar{width:28px;height:28px;border-radius:8px;background:var(--grad-main);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#000;font-family:'Outfit';flex-shrink:0}
+  .lp-demo-title{font-size:12px;font-weight:700;color:#b0b0d0;font-family:'Outfit'}
+  .lp-demo-dot{width:6px;height:6px;border-radius:50%;background:#c2ff3d;margin-left:auto;box-shadow:0 0 8px rgba(194,255,61,.8);animation:lpPulse 2s infinite}
+  @keyframes lpPulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .lp-demo-q{background:rgba(194,255,61,.08);border:1px solid rgba(194,255,61,.15);border-radius:12px 12px 4px 12px;padding:10px 14px;font-size:13px;color:#c2ff3d;font-family:'Outfit';font-weight:600;margin-bottom:10px;display:inline-block;max-width:85%}
+  .lp-demo-a{background:rgba(255,255,255,.04);border-radius:4px 12px 12px 12px;padding:10px 14px;font-size:12px;color:#9090b8;line-height:1.6;font-family:'Outfit'}
+  .lp-demo-a strong{color:#d0d0f0;font-weight:600}
+  .lp-demo-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.15);color:#00e5ff;font-size:10px;font-family:'JetBrains Mono';padding:3px 8px;border-radius:6px;margin-top:8px}
+
+  /* CTA BUTTONS */
+  .lp-cta-row{display:flex;gap:10px;flex-wrap:wrap}
+  .lp-btn-main{flex:1;min-width:140px;background:var(--grad-main);border:none;color:#000;padding:15px 20px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Outfit';box-shadow:0 8px 28px rgba(194,255,61,.25);transition:transform .15s,box-shadow .15s}
+  .lp-btn-main:hover{transform:translateY(-1px);box-shadow:0 12px 36px rgba(194,255,61,.35)}
+  .lp-btn-sec{flex:1;min-width:120px;background:transparent;border:1.5px solid rgba(255,255,255,.12);color:#f0f0f5;padding:15px 20px;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Outfit';transition:border-color .2s}
+  .lp-btn-sec:hover{border-color:rgba(255,255,255,.3)}
+
+  /* TRUST STRIP */
+  .lp-trust{display:flex;align-items:center;justify-content:center;gap:0;overflow-x:auto;padding:16px 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);scrollbar-width:none}
+  .lp-trust::-webkit-scrollbar{display:none}
+  .lp-trust-item{display:flex;align-items:center;gap:6px;padding:0 18px;white-space:nowrap;font-size:13px;font-weight:700;color:#7070a0;font-family:'Outfit'}
+  .lp-trust-item span{font-size:18px;font-weight:900;color:#f0f0f5;font-family:'Outfit'}
+  .lp-trust-div{width:1px;height:20px;background:rgba(255,255,255,.08);flex-shrink:0}
+
+  /* SECTION */
+  .lp-section{padding:44px 22px}
+  .lp-eyebrow{font-size:10px;font-family:'JetBrains Mono';font-weight:700;letter-spacing:.18em;color:var(--lime);text-transform:uppercase;margin-bottom:10px}
+  .lp-section-h{font-size:28px;font-weight:900;font-family:'Outfit';letter-spacing:-.02em;color:#f0f0f5;margin-bottom:8px;line-height:1.15}
+  .lp-section-sub{font-size:14px;color:#7070a0;line-height:1.6;margin-bottom:28px}
+
+  /* STEPS */
+  .lp-steps{display:flex;flex-direction:column;gap:14px;margin-bottom:0}
+  .lp-step{display:flex;gap:14px;align-items:flex-start;padding:16px;background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:16px}
+  .lp-step-num{width:32px;height:32px;border-radius:10px;background:rgba(194,255,61,.1);border:1px solid rgba(194,255,61,.2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--lime);font-family:'Outfit';flex-shrink:0}
+  .lp-step-title{font-size:14px;font-weight:700;color:#f0f0f5;font-family:'Outfit';margin-bottom:3px}
+  .lp-step-desc{font-size:12px;color:#7070a0;font-family:'Outfit';line-height:1.5}
+
+  /* FIELDS GRID */
+  .lp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .lp-field{background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:16px 14px;cursor:pointer;transition:border-color .2s,background .2s}
+  .lp-field:hover{border-color:rgba(194,255,61,.3);background:#111120}
+  .lp-field-emoji{font-size:26px;margin-bottom:8px;display:block}
+  .lp-field-name{font-size:13px;font-weight:700;color:#f0f0f5;font-family:'Outfit';margin-bottom:3px}
+  .lp-field-count{font-size:11px;color:#5a5a72;font-family:'JetBrains Mono'}
+
+  /* PRICING */
+  .lp-price-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .lp-price-box{border-radius:20px;padding:22px 18px}
+  .lp-price-free{background:#0d0d18;border:1px solid rgba(255,255,255,.08)}
+  .lp-price-pro{background:linear-gradient(145deg,rgba(194,255,61,.06),rgba(157,108,255,.08));border:1.5px solid rgba(194,255,61,.25);position:relative}
+  .lp-popular{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--grad-main);color:#000;font-size:9px;font-weight:900;font-family:'JetBrains Mono';padding:3px 12px;border-radius:99px;white-space:nowrap;letter-spacing:.05em}
+  .lp-price-label{font-size:10px;font-family:'JetBrains Mono';font-weight:700;color:#5a5a72;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+  .lp-price-num{font-size:36px;font-weight:900;font-family:'Outfit';letter-spacing:-.03em;color:#f0f0f5;line-height:1}
+  .lp-price-per{font-size:12px;color:#5a5a72;font-family:'Outfit';margin-bottom:16px;margin-top:4px}
+  .lp-price-list{list-style:none;padding:0;margin:0 0 18px}
+  .lp-price-list li{font-size:12px;color:#9090b8;font-family:'Outfit';padding:5px 0;display:flex;align-items:center;gap:7px;border-bottom:1px solid rgba(255,255,255,.04)}
+  .lp-price-list li:last-child{border:none}
+  .lp-price-list li::before{content:'✓';color:var(--lime);font-weight:900;font-size:11px;flex-shrink:0}
+  .lp-price-btn-f{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#f0f0f5;padding:12px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit'}
+  .lp-price-btn-p{width:100%;background:var(--grad-main);border:none;color:#000;padding:12px;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;font-family:'Outfit';box-shadow:0 6px 20px rgba(194,255,61,.2)}
+
+  /* BOTTOM CTA */
+  .lp-bottom{padding:48px 22px;text-align:center;background:linear-gradient(180deg,transparent,rgba(157,108,255,.05))}
+  .lp-bottom h2{font-size:30px;font-weight:900;font-family:'Outfit';letter-spacing:-.02em;color:#f0f0f5;margin-bottom:10px}
+  .lp-bottom p{font-size:14px;color:#7070a0;margin-bottom:24px;font-family:'Outfit'}
+  .lp-bottom-btn{background:var(--grad-main);border:none;color:#000;padding:16px 36px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;font-family:'Outfit';box-shadow:0 8px 28px rgba(194,255,61,.3)}
+
+  /* FOOTER */
+  .lp-foot{padding:20px 22px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .lp-foot-links{display:flex;gap:18px}
+  .lp-foot-links a{font-size:11px;color:#5a5a72;font-family:'Outfit';text-decoration:none}
+  .lp-foot-copy{font-size:11px;color:#3a3a52;font-family:'JetBrains Mono'}
 </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════════
+     VION AI — LANDING PAGE
+══════════════════════════════════ -->
+<div id="landingScreen" class="lp">
+
+  <!-- NAV -->
+  <nav class="lp-nav">
+    <div class="lp-brand">
+      <div class="lp-brand-icon">V</div>
+      <div class="lp-brand-name">Vion <em>AI</em></div>
+    </div>
+    <button class="lp-nav-login" onclick="showAuthFromLanding()">Login →</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="lp-hero">
+    <div class="lp-badge">🇮🇳 Built for Indian Medical Students</div>
+    <h1 class="lp-h1">Study smarter,<br><span class="accent">score higher.</span></h1>
+    <p class="lp-hero-sub">Your AI tutor that knows <strong>MBBS, BAMS, BDS, Nursing</strong> — in Hindi + English.</p>
+
+    <!-- DEMO CHAT CARD -->
+    <div class="lp-demo">
+      <div class="lp-demo-header">
+        <div class="lp-demo-avatar">V</div>
+        <div class="lp-demo-title">Veda AI · MBBS Pharmacology</div>
+        <div class="lp-demo-dot"></div>
+      </div>
+      <div class="lp-demo-q">Mechanism of beta blockers? 🤔</div>
+      <div class="lp-demo-a">
+        <strong>Beta blockers</strong> competitively antagonize catecholamines at β-adrenergic receptors. They reduce heart rate, contractility & BP by blocking β₁ receptors in the heart.<br><br>
+        Key exam point: Propranolol = non-selective (β₁ + β₂), Atenolol = cardioselective (β₁ only) ✅
+        <br><div class="lp-demo-tag">⚡ Instant answer</div>
+      </div>
+    </div>
+
+    <div class="lp-cta-row">
+      <button class="lp-btn-main" onclick="showAuthFromLanding()">Start Free →</button>
+      <button class="lp-btn-sec" onclick="document.getElementById('lpFields').scrollIntoView({behavior:'smooth'})">See Fields ↓</button>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="lp-trust">
+    <div class="lp-trust-item"><span>9</span> Fields</div>
+    <div class="lp-trust-div"></div>
+    <div class="lp-trust-item"><span>100+</span> Subjects</div>
+    <div class="lp-trust-div"></div>
+    <div class="lp-trust-item"><span>🇮🇳</span> Hindi + English</div>
+    <div class="lp-trust-div"></div>
+    <div class="lp-trust-item"><span>Free</span> to start</div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="lp-section">
+    <div class="lp-eyebrow">How it works</div>
+    <h2 class="lp-section-h">3 steps to<br>better marks.</h2>
+    <div class="lp-steps">
+      <div class="lp-step">
+        <div class="lp-step-num">1</div>
+        <div>
+          <div class="lp-step-title">Pick your field & subject</div>
+          <div class="lp-step-desc">MBBS, BAMS, BDS, Nursing, Pharmacy, Physio — full syllabus covered</div>
+        </div>
+      </div>
+      <div class="lp-step">
+        <div class="lp-step-num">2</div>
+        <div>
+          <div class="lp-step-title">Ask anything — voice or text</div>
+          <div class="lp-step-desc">Type, speak, or upload your PDF notes. Hindi or English — your choice</div>
+        </div>
+      </div>
+      <div class="lp-step">
+        <div class="lp-step-num">3</div>
+        <div>
+          <div class="lp-step-title">Get exam-ready answers instantly</div>
+          <div class="lp-step-desc">Clear explanations with exam tips. Also take 10-MCQ tests per subject</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIELDS -->
+  <section class="lp-section" id="lpFields" style="padding-top:0">
+    <div class="lp-eyebrow">All Fields</div>
+    <h2 class="lp-section-h">Every medical stream,<br>covered.</h2>
+    <div class="lp-grid">
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">🏥</span>
+        <div class="lp-field-name">MBBS / MD</div>
+        <div class="lp-field-count">19 subjects</div>
+      </div>
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">🩺</span>
+        <div class="lp-field-name">Nursing</div>
+        <div class="lp-field-count">14 subjects</div>
+      </div>
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">💊</span>
+        <div class="lp-field-name">Pharmacy</div>
+        <div class="lp-field-count">11 subjects</div>
+      </div>
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">🦷</span>
+        <div class="lp-field-name">BDS / Dental</div>
+        <div class="lp-field-count">17 subjects</div>
+      </div>
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">🏃</span>
+        <div class="lp-field-name">Physiotherapy</div>
+        <div class="lp-field-count">13 subjects</div>
+      </div>
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">🌿</span>
+        <div class="lp-field-name">BAMS / Ayurveda</div>
+        <div class="lp-field-count">15 subjects</div>
+      </div>
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">🌸</span>
+        <div class="lp-field-name">Homeopathy</div>
+        <div class="lp-field-count">16 subjects</div>
+      </div>
+      <div class="lp-field" onclick="showAuthFromLanding()">
+        <span class="lp-field-emoji">🚑</span>
+        <div class="lp-field-name">Paramedical</div>
+        <div class="lp-field-count">10 subjects</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="lp-section" style="padding-top:0">
+    <div class="lp-eyebrow">Pricing</div>
+    <h2 class="lp-section-h">Start free.<br>Upgrade anytime.</h2>
+    <div class="lp-price-row">
+      <div class="lp-price-box lp-price-free">
+        <div class="lp-price-label">Free</div>
+        <div class="lp-price-num">₹0</div>
+        <div class="lp-price-per">forever</div>
+        <ul class="lp-price-list">
+          <li>5 questions/day</li>
+          <li>Watch ad → +5 more</li>
+          <li>All 9 fields</li>
+          <li>MCQ Tests</li>
+        </ul>
+        <button class="lp-price-btn-f" onclick="showAuthFromLanding()">Get started</button>
+      </div>
+      <div class="lp-price-box lp-price-pro">
+        <div class="lp-popular">MOST POPULAR</div>
+        <div class="lp-price-label" style="color:var(--lime)">👑 Premium</div>
+        <div class="lp-price-num">₹149</div>
+        <div class="lp-price-per">/month</div>
+        <ul class="lp-price-list">
+          <li>Unlimited questions</li>
+          <li>No ads</li>
+          <li>Priority speed</li>
+          <li>PDF + Voice input</li>
+        </ul>
+        <button class="lp-price-btn-p" onclick="showAuthFromLanding()">Go Premium</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <div class="lp-bottom">
+    <h2>Ready to study<br>smarter? 🚀</h2>
+    <p>Join thousands of Indian medical students</p>
+    <button class="lp-bottom-btn" onclick="showAuthFromLanding()">Start Free — No Card Needed</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="lp-foot">
+    <div class="lp-foot-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="lp-foot-copy">© 2026 Vion AI · Powered by Veda AI 🇮🇳</div>
+  </div>
+
+</div>
+
 <!-- ══ SIGNUP / LOGIN SCREEN ══ -->
 <div id="authScreen" class="auth-screen">
   <div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at top,#0a0612 0%,#000 60%)"></div>
   <div class="auth-box">
-    <div class="auth-logo">HP</div>
-    <div class="auth-brand">HealthPulse <span>Pro</span></div>
+    <div class="auth-logo">V</div>
+    <div class="auth-brand">Vion <span>AI</span></div>
     <div class="auth-sub">✦ POWERED BY VEDA AI ✦</div>
     <p class="auth-tagline">India's Medical AI Tutor<br>MBBS · BAMS · BDS · Nursing · Pharmacy 🇮🇳</p>
     <div class="auth-sectors">
@@ -381,8 +664,8 @@
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="tb-left">
-    <div class="tb-logo" id="tbLogo">HP</div>
-    <span class="tb-name">HealthPulse <span>· Veda AI</span></span>
+    <div class="tb-logo" id="tbLogo">V</div>
+    <span class="tb-name">Vion AI <span>· Veda AI</span></span>
   </div>
   <div class="tb-right">
     <button class="premium-badge" onclick="showPremium()" id="premiumBadge">👑 PRO</button>
@@ -401,7 +684,7 @@
     <div class="logo-stage">
       <div class="logo-ring2"></div>
       <div class="logo-ring"></div>
-      <div class="logo-anim" id="logoAnim">HP</div>
+      <div class="logo-anim" id="logoAnim">V</div>
     </div>
     <h1 class="hero-t">Learn medicine,<br><span class="accent">vibe</span> with AI ✨</h1>
     <div class="vbadge">✦ Powered by Veda AI ✦</div>
@@ -465,7 +748,7 @@
     <button class="hbtn" onclick="show('pg-premium')">← Back</button>
     <div class="chat-logo" style="background:var(--grad-warm)">💳</div>
     <div class="chat-info">
-      <div class="chat-brand">HealthPulse Pro</div>
+      <div class="chat-brand">Vion AI</div>
       <div class="chat-title">UPI Payment</div>
     </div>
   </div>
@@ -506,8 +789,8 @@
 <div id="pg-chat" class="scr">
   <div class="chat-hdr">
     <button class="hbtn" id="btn-bk">← <span id="txt-back2">Subjects</span></button>
-    <div class="chat-logo" id="chatLogo">HP</div>
-    <div class="chat-info"><div class="chat-brand">HealthPulse · Veda AI</div><div class="chat-title" id="ctitle"></div></div>
+    <div class="chat-logo" id="chatLogo">V</div>
+    <div class="chat-info"><div class="chat-brand">Vion AI · Veda AI</div><div class="chat-title" id="ctitle"></div></div>
     <button class="hbtn mcq" onclick="startMCQTest()" title="10 MCQ Test">📝 Test</button>
     <button class="premium-badge" style="padding:7px 10px" onclick="showPremium()">👑</button>
   </div>
@@ -546,7 +829,7 @@
 
 <script>
 // ============================================================
-// HealthPulse Pro · Veda AI — COMPLETE VERSION
+// Vion AI · Veda AI — COMPLETE VERSION
 // 🔐 API key is on BACKEND (not in frontend!)
 // 💳 UPI Payment Integrated
 // 👑 Premium Auto-Expiry (30/365 days)
@@ -623,7 +906,7 @@ async function processPayment() {
       key: data.keyId,
       amount: data.amount,
       currency: 'INR',
-      name: 'HealthPulse Pro',
+      name: 'Vion AI',
       description: paymentPlan === 'yearly' ? 'Yearly Plan' : 'Monthly Plan',
       order_id: data.orderId,
       prefill: { email },
@@ -644,7 +927,7 @@ async function processPayment() {
         if (verifyData.success) {
           isPremiumUser = true;
           localStorage.setItem('isPremium_' + email, 'true');
-          alert('🎉 Premium Activated! Welcome to HealthPulse Pro!');
+          alert('🎉 Premium Activated! Welcome to Vion AI!');
           location.reload();
         } else {
           alert('⚠️ Verify Error: ' + verifyData.error);
@@ -790,7 +1073,7 @@ function downloadData() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `HealthPulse_Data_${new Date().toISOString().slice(0,10)}.json`;
+    a.download = `VionAI_Data_${new Date().toISOString().slice(0,10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
   } catch(e) {
@@ -897,20 +1180,29 @@ let adWatchCount = 0;
 let cooldownEndTime = null;
 let countdownInterval = null;
 
+function showAuthFromLanding() {
+  document.getElementById('landingScreen').classList.add('hidden');
+  document.getElementById('authScreen').classList.remove('hidden');
+}
+
 // Check existing session on load
 sb.auth.getSession().then(({ data: { session } }) => {
   if (session?.user?.email) {
     currentUserEmail = session.user.email;
     localStorage.setItem('userEmail', currentUserEmail);
+    document.getElementById('landingScreen').classList.add('hidden');
     document.getElementById('authScreen').classList.add('hidden');
     fetchPremiumList();
   } else {
     currentUserEmail = localStorage.getItem('userEmail');
     if (currentUserEmail) {
+      document.getElementById('landingScreen').classList.add('hidden');
       document.getElementById('authScreen').classList.add('hidden');
       fetchPremiumList();
     } else {
-      document.getElementById('authScreen').classList.remove('hidden');
+      // Show landing page first!
+      document.getElementById('landingScreen').classList.remove('hidden');
+      document.getElementById('authScreen').classList.add('hidden');
     }
   }
 });
@@ -1007,6 +1299,9 @@ async function logoutUser() {
   localStorage.removeItem('cooldown_end_' + currentUserEmail);
   location.reload();
 }
+
+// Also update auth state change listener to handle landing
+
 
 async function fetchPremiumList() {
   const localList = JSON.parse(localStorage.getItem('local_premium_emails') || '[]');
@@ -1420,7 +1715,7 @@ function renderWelcome(){
 function getSystemMessage(){
   var s=SECTORS[curSector];
   var li=lang==='hi'?'Hamesha pure Hindi mein jawab do. Medical terms English mein reh sakte hain.':'Always respond in clear English suitable for medical students.';
-  return 'You are Veda, an expert AI medical tutor on HealthPulse Pro.\nSector: '+s.label+' | Subject: '+curSubject+'\n\n'+li+'\n\nFormat every answer like this:\n**Key Point** — direct answer in 1-2 lines\n**Explanation** — detailed, exam-focused\n**High-Yield Exam Fact** — what examiners frequently ask\n**Mnemonic** — include only if genuinely helpful\n\nFor MCQs: explain why each option is right or wrong.\nUse **bold** to highlight key terms.\nBe 100% accurate, concise, and encouraging.\nIf a PDF is attached, base your answer on the PDF contents (summarize / explain / quiz the user as asked).\nYou are Veda — never mention any AI company.';
+  return 'You are Veda, an expert AI medical tutor on Vion AI.\nSector: '+s.label+' | Subject: '+curSubject+'\n\n'+li+'\n\nFormat every answer like this:\n**Key Point** — direct answer in 1-2 lines\n**Explanation** — detailed, exam-focused\n**High-Yield Exam Fact** — what examiners frequently ask\n**Mnemonic** — include only if genuinely helpful\n\nFor MCQs: explain why each option is right or wrong.\nUse **bold** to highlight key terms.\nBe 100% accurate, concise, and encouraging.\nIf a PDF is attached, base your answer on the PDF contents (summarize / explain / quiz the user as asked).\nYou are Veda — never mention any AI company.';
 }
 
 // ============================================================
@@ -1447,269 +1742,4 @@ async function sendMsg(txt){
     var reply = await callDeepSeek(getSystemMessage(), chatHist);
     rmNode(lid);
     addBubble('ai',reply);
-    chatHist.push({role:'assistant',content:reply});
-    saveQA(msg || '(PDF attached)', reply);
-  }catch(e){
-    console.error(e);
-    rmNode(lid);
-    var em=lang==='hi'?'⚠️ त्रुटि: '+e.message+'\n\nकृपया पुनः प्रयास करें।':'⚠️ Error: '+e.message+'\n\nPlease try again.';
-    addBubble('err',em);
-    if(chatHist.length>0 && chatHist[chatHist.length-1].role==='user') chatHist.pop();
-    if(!isPremiumUser){dailyCount--;saveDailyCount();updateUI();}
-  }
-  isBusy=false; updBtn();
-}
-
-function addBubble(type,text,fileName){
-  var ca=document.getElementById('ca');
-  var s=SECTORS[curSector];
-  var d=document.createElement('div');
-  if(type==='user'){
-    d.className='mrow u';
-    const chip = fileName ? `<div class="file-chip">📄 ${xe(fileName)}</div>` : '';
-    d.innerHTML='<div><div style="text-align:right">'+chip+'</div><div class="ubub" style="background:'+s.grad+'">'+xe(text||'(PDF attached)')+'</div></div>';
-  }else if(type==='err'){
-    d.className='mrow';
-    d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub"><div style="color:#ff7a8a">'+xe(text)+'</div></div>';
-  }else{
-    d.className='mrow';
-    d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub">'+fmtAI(text,s.color)+'</div>';
-  }
-  ca.appendChild(d);
-  ca.scrollTop=ca.scrollHeight;
-}
-
-function addLoader(){
-  var ca=document.getElementById('ca');
-  var s=SECTORS[curSector];
-  var id='ld'+Date.now();
-  var d=document.createElement('div');
-  d.className='mrow'; d.id=id;
-  d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub"><div class="dots"><span class="dot" style="background:'+s.color+';animation-delay:0s"></span><span class="dot" style="background:'+s.color+';animation-delay:.15s"></span><span class="dot" style="background:'+s.color+';animation-delay:.3s"></span></div></div>';
-  ca.appendChild(d);
-  ca.scrollTop=ca.scrollHeight;
-  return id;
-}
-
-function rmNode(id){var e=document.getElementById(id); if(e) e.remove();}
-
-function fmtAI(t,c){
-  return t.split('\n').map(l=>{
-    if(/^\*\*[^*]+\*\*/.test(l)) return '<div class="h3" style="color:'+c+'">'+inl(l,c)+'</div>';
-    if(/^[-•] /.test(l)) return '<div class="li">'+inl(l.slice(2),c)+'</div>';
-    if(/^\d+\.\s/.test(l)) return '<div class="li">'+inl(l,c)+'</div>';
-    if(l.trim()==='') return '<div style="height:6px"></div>';
-    return '<div class="pp">'+inl(l,c)+'</div>';
-  }).join('');
-}
-
-function inl(t,c){ return xe(t).replace(/\*\*(.*?)\*\*/g,'<strong style="color:'+c+'">$1</strong>'); }
-
-function xe(s){ return String(s).replace(/[&<>]/g,function(m){ return m==='&'?'&amp;':m==='<'?'&lt;':'>'; }); }
-
-function updBtn(){ document.getElementById('sb').disabled=(!document.getElementById('ci').value.trim() && !pendingPDF) || isBusy; }
-
-// ============================================================
-// PDF Upload
-// ============================================================
-document.getElementById('pdfFile').addEventListener('change', async (e)=>{
-  const file = e.target.files[0]; if (!file) return;
-  if (file.type !== 'application/pdf') { alert('Please pick a PDF file.'); return; }
-  if (file.size > 15*1024*1024) { alert('PDF too large (max 15 MB).'); return; }
-  const b64 = await fileToBase64(file);
-  pendingPDF = { name: file.name, mime:'application/pdf', data: b64 };
-  renderAttachBar();
-  const ci=document.getElementById('ci');
-  if (!ci.value.trim()) { ci.value = lang==='hi' ? 'Is PDF ko summarize karo aur key exam points nikalo.' : 'Summarize this PDF and pull out the key exam points.'; updBtn(); }
-  e.target.value='';
-});
-
-function fileToBase64(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(',')[1]); r.onerror=rej; r.readAsDataURL(file); }); }
-
-function renderAttachBar(){
-  const bar = document.getElementById('attachBar'); if (!bar) return;
-  bar.innerHTML = pendingPDF ? `<span class="attach-pill">📄 ${xe(pendingPDF.name)} <span class="x" onclick="clearPDF()">×</span></span>` : '';
-}
-
-function clearPDF(){ pendingPDF=null; renderAttachBar(); }
-
-// ============================================================
-// Voice Input
-// ============================================================
-let recognition=null, isRecording=false;
-
-function toggleVoice(){
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { alert('Voice input not supported in this browser. Try Chrome.'); return; }
-  if (isRecording) { recognition && recognition.stop(); return; }
-  recognition = new SR();
-  recognition.lang = lang === 'hi' ? 'hi-IN' : 'en-US';
-  recognition.interimResults = true;
-  recognition.continuous = false;
-  const ci = document.getElementById('ci');
-  const startText = ci.value;
-  recognition.onstart = ()=>{ isRecording=true; document.getElementById('micBtn').classList.add('rec'); };
-  recognition.onend = ()=>{ isRecording=false; document.getElementById('micBtn').classList.remove('rec'); };
-  recognition.onerror = (ev)=>{ isRecording=false; document.getElementById('micBtn').classList.remove('rec'); console.warn('voice',ev); };
-  recognition.onresult = (ev)=>{
-    let txt='';
-    for (let i=0;i<ev.results.length;i++) txt += ev.results[i][0].transcript;
-    ci.value = (startText ? startText+' ' : '') + txt;
-    updBtn();
-  };
-  recognition.start();
-}
-
-// ============================================================
-// MCQ TEST - Using Secure Backend
-// ============================================================
-let mcqState = null;
-
-async function startMCQTest(){
-  if (!curSector || !curSubject) { alert(lang==='hi'?'Pehle ek subject choose karein.':'Please pick a subject first.'); return; }
-  if (!incrementUsage()) return;
-  const s=SECTORS[curSector];
-  document.getElementById('mcqTitle').textContent = s.icon+' '+s.label+' — '+curSubject;
-  document.getElementById('mcqLogo').style.background = s.grad;
-  document.getElementById('mcqBody').innerHTML = `<div class="mcq-card" style="text-align:center"><div style="font-size:36px;margin-bottom:8px">📝</div><div style="font-weight:800;font-size:18px;margin-bottom:6px">${lang==='hi'?'10 MCQ generate ho rahe hain…':'Generating 10 MCQs…'}</div><div style="color:var(--sub);font-size:13px">${xe(curSubject)} · ${lang==='hi'?'thoda intezaar':'a moment'}</div><div class="dots" style="justify-content:center;margin-top:14px"><span class="dot" style="background:${s.color}"></span><span class="dot" style="background:${s.color};animation-delay:.15s"></span><span class="dot" style="background:${s.color};animation-delay:.3s"></span></div></div>`;
-  show('pg-mcq');
-  try {
-    const langInstr = lang==='hi' ? 'Questions Hinglish (Hindi+English medical terms) mein likhein.' : 'Questions in clear English.';
-    const prompt = `Generate exactly 10 high-quality MCQs for ${s.label} → ${curSubject}.
-${langInstr}
-Each MCQ must be syllabus-relevant, exam-style, with 4 options (A,B,C,D), exactly one correct.
-Mix difficulty: 4 easy, 4 medium, 2 hard.
-Cover different topics within the subject — do NOT repeat the same concept.
-Return ONLY valid JSON, no markdown, this exact shape:
-{"questions":[{"q":"question text","options":["A text","B text","C text","D text"],"correct":0,"explanation":"why the correct option is right (1-2 lines)"}]}
-"correct" is the 0-based index. Provide exactly 10 items.`;
-    
-    const raw = await generateMCQ(prompt);
-    let parsed;
-    try { parsed = JSON.parse(raw); }
-    catch(e){ const m = raw.match(/\{[\s\S]*\}/); parsed = m ? JSON.parse(m[0]) : null; }
-    if (!parsed || !Array.isArray(parsed.questions) || parsed.questions.length < 1) throw new Error('Could not parse MCQs');
-    mcqState = { questions: parsed.questions.slice(0,10), idx: 0, score: 0, answers: [] };
-    renderMCQ();
-  } catch(e){
-    document.getElementById('mcqBody').innerHTML = `<div class="mcq-card"><div style="color:#ff7a8a;font-weight:700">⚠️ ${xe(e.message)}</div><button class="mcq-next show" onclick="startMCQTest()">↻ Retry</button></div>`;
-    if(!isPremiumUser){dailyCount--;saveDailyCount();updateUI();}
-  }
-}
-
-function renderMCQ(){
-  const body = document.getElementById('mcqBody');
-  const total = mcqState.questions.length;
-  if (mcqState.idx >= total) { renderMCQResult(); return; }
-  const q = mcqState.questions[mcqState.idx];
-  const pct = (mcqState.idx / total) * 100;
-  const letters = ['A','B','C','D','E'];
-  const opts = (q.options||[]).map((o,i)=>`<button class="mcq-opt" data-i="${i}"><span class="letter">${letters[i]}</span><span>${xe(o)}</span></button>`).join('');
-  body.innerHTML = `
-    <div class="mcq-progress">
-      <div class="mcq-prog-bar"><div class="mcq-prog-fill" style="width:${pct}%"></div></div>
-      <div class="mcq-prog-txt">${mcqState.idx+1} / ${total}</div>
-    </div>
-    <div class="mcq-card">
-      <div class="mcq-qnum">${lang==='hi'?'Sawaal':'Question'} ${mcqState.idx+1}</div>
-      <div class="mcq-q">${xe(q.q)}</div>
-      <div class="mcq-opts" id="mcqOpts">${opts}</div>
-      <div class="mcq-expl" id="mcqExpl"></div>
-      <button class="mcq-next" id="mcqNext" onclick="nextMCQ()">${lang==='hi'?'Agla sawaal →':'Next question →'}</button>
-    </div>`;
-  body.querySelectorAll('.mcq-opt').forEach(b=>b.onclick = ()=>pickMCQ(parseInt(b.dataset.i)));
-}
-
-function pickMCQ(i){
-  const q = mcqState.questions[mcqState.idx];
-  const correct = Number(q.correct);
-  const btns = document.querySelectorAll('#mcqOpts .mcq-opt');
-  btns.forEach((b,bi)=>{
-    b.disabled = true;
-    if (bi === correct) b.classList.add('correct');
-    else if (bi === i) b.classList.add('wrong');
-  });
-  const isRight = i === correct;
-  if (isRight) mcqState.score++;
-  mcqState.answers.push({ q:q.q, picked:i, correct, right:isRight });
-  const ex = document.getElementById('mcqExpl');
-  ex.innerHTML = `<b>${isRight ? (lang==='hi'?'✅ Sahi!':'✅ Correct!') : (lang==='hi'?'❌ Galat.':'❌ Wrong.')}</b> ${xe(q.explanation||'')}`;
-  ex.classList.add('show');
-  document.getElementById('mcqNext').classList.add('show');
-  if (mcqState.idx === mcqState.questions.length - 1) {
-    document.getElementById('mcqNext').textContent = lang==='hi' ? 'Result dekhein 🎯' : 'See result 🎯';
-  }
-}
-
-function nextMCQ(){ mcqState.idx++; renderMCQ(); }
-
-function renderMCQResult(){
-  const body = document.getElementById('mcqBody');
-  const total = mcqState.questions.length;
-  const score = mcqState.score;
-  const pct = Math.round((score/total)*100);
-  let grade, tag;
-  if (pct >= 90) { grade='🔥 Outstanding!'; tag=lang==='hi'?'Tu toh topper hai!':"You're a topper!"; }
-  else if (pct >= 70) { grade='💪 Great work!'; tag=lang==='hi'?'Bahut badhiya, thoda aur push.':'Solid — keep pushing.'; }
-  else if (pct >= 50) { grade='📈 Keep going'; tag=lang==='hi'?'Revision karke wapas aao.':'Revise and retake.'; }
-  else { grade='📚 Needs revision'; tag=lang==='hi'?'Concepts dohraen, phir test do.':'Brush up concepts and retry.'; }
-  body.innerHTML = `<div class="mcq-result">
-    <div class="mcq-score">${score}<small>/${total}</small></div>
-    <div class="mcq-grade">${grade}</div>
-    <div class="mcq-tag">${xe(tag)} · ${pct}%</div>
-    <div class="mcq-acts">
-      <button class="primary" onclick="startMCQTest()">↻ ${lang==='hi'?'Naya test':'New test'}</button>
-      <button class="secondary" onclick="exitMCQ()">${lang==='hi'?'Chat par wapas':'Back to chat'}</button>
-    </div>
-  </div>`;
-}
-
-function exitMCQ(){ mcqState=null; show('pg-chat'); }
-
-// ============================================================
-// INIT
-// ============================================================
-if (!checkAuth()) { /* wait */ } else { fetchPremiumList(); }
-
-document.getElementById('ci').addEventListener('input',updBtn);
-document.getElementById('ci').addEventListener('keydown',function(e){
-  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMsg(); }
-});
-document.getElementById('sb').onclick=function(){ sendMsg(); };
-
-// EXPOSE GLOBALS
-window.upgradeToPremium = upgradeToPremium;
-window.upgradeToCollege = upgradeToCollege;
-window.showPremium = showPremium;
-window.setLang = setLang;
-window.show = show;
-window.logoutUser = logoutUser;
-window.adminAddEmail = adminAddEmail;
-window.adminRemoveEmail = adminRemoveEmail;
-window.adminManualRemove = adminManualRemove;
-window.closeAdminPanel = closeAdminPanel;
-window.watchAd = watchAd;
-window.closeAdModal = closeAdModal;
-window.showAdModal = showAdModal;
-window.startMCQTest = startMCQTest;
-window.nextMCQ = nextMCQ;
-window.exitMCQ = exitMCQ;
-window.toggleVoice = toggleVoice;
-window.clearPDF = clearPDF;
-window.downloadData = downloadData;
-window.isAdmin = isAdmin;
-window.showAdminPanel = showAdminPanel;
-window.initiatePayment = initiatePayment;
-window.processPayment = processPayment;
-window.selectUPI = selectUPI;
-window.checkPremiumExpiry = checkPremiumExpiry;
-
-console.log('🚀 HealthPulse Pro loaded (SECURE - no API key in frontend!)');
-console.log('🔐 Admin mode: ' + (isAdmin() ? 'ACTIVE' : 'inactive'));
-console.log('📌 To activate admin: add ?admin=' + SECRET_KEY + ' to the URL');
-console.log('💳 UPI Payment: Integrated');
-console.log('👑 Premium: Auto-activation with expiry (30/365 days)');
-console.log('⏰ Auto-expiry: Active');
-</script>
-</body>
-</html>
+    chatHist.push({role:'assist
