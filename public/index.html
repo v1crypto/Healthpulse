@@ -7,15 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<script>
-// Global function — available immediately
-function showAuthFromLanding() {
-  var l = document.getElementById('landingScreen');
-  var a = document.getElementById('authScreen');
-  if(l) l.style.display = 'none';
-  if(a) { a.style.display = 'flex'; a.classList.remove('hidden'); }
-}
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
@@ -51,7 +42,6 @@ function showAuthFromLanding() {
   #bg::before{background:radial-gradient(circle,#9d6cff,transparent 65%);top:-140px;left:-120px}
   #bg::after{background:radial-gradient(circle,#ff3df0,transparent 65%);bottom:-180px;right:-140px;animation-delay:-8s}
   #grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%)}
-
   .scr{display:none;position:relative;z-index:1;flex-direction:column}
   .scr.on{display:flex}
   #pg-sector{min-height:100vh;align-items:center;padding:90px 18px 60px;overflow-y:auto}
@@ -62,7 +52,6 @@ function showAuthFromLanding() {
   #pg-mcq.on{display:flex}
   #pg-payment{height:100vh;overflow:hidden;display:none;flex-direction:column}
   #pg-payment.on{display:flex}
-
   .topbar{position:fixed;top:12px;left:12px;right:12px;z-index:200;background:rgba(10,8,16,.88);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(157,108,255,.18);border-radius:22px;padding:8px 10px 8px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.03)}
   .tb-left{display:flex;align-items:center;gap:10px;min-width:0;flex:1;overflow:hidden}
   .tb-right{display:flex;align-items:center;gap:6px;flex-shrink:0}
@@ -331,8 +320,8 @@ function showAuthFromLanding() {
   .lp-brand-icon{width:32px;height:32px;border-radius:9px;background:var(--grad-main);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#000;font-family:'Outfit'}
   .lp-brand-name{font-size:16px;font-weight:800;font-family:'Outfit';letter-spacing:-.02em;color:#f0f0f5}
   .lp-brand-name em{font-style:normal;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lp-nav-login{background:transparent;border:1.5px solid rgba(255,255,255,.15);color:#f0f0f5;padding:7px 16px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit';transition:border-color .2s}
-  .lp-nav-login:hover{border-color:rgba(194,255,61,.5)}
+  .lp-nav-login{background:var(--grad-main);color:#000;border:none;padding:7px 18px;border-radius:99px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Outfit';transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(194,255,61,.3)}
+  .lp-nav-login:hover{transform:scale(1.03);box-shadow:0 6px 24px rgba(194,255,61,.4)}
 
   /* HERO */
   .lp-hero{padding:52px 22px 40px;position:relative;overflow:hidden}
@@ -425,7 +414,7 @@ function showAuthFromLanding() {
 <!-- ══════════════════════════════════
      VION AI — LANDING PAGE
 ══════════════════════════════════ -->
-<div id="landingScreen" class="lp" style="display:flex">
+<div id="landingScreen" class="lp">
 
   <!-- NAV -->
   <nav class="lp-nav">
@@ -433,7 +422,7 @@ function showAuthFromLanding() {
       <div class="lp-brand-icon">V</div>
       <div class="lp-brand-name">Vion <em>AI</em></div>
     </div>
-    <button class="lp-nav-login" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Login →</button>
+    <button class="lp-nav-login" onclick="showAuthFromLanding()">✨ Start Free</button>
   </nav>
 
   <!-- HERO -->
@@ -458,7 +447,7 @@ function showAuthFromLanding() {
     </div>
 
     <div class="lp-cta-row">
-      <button class="lp-btn-main" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Start Free →</button>
+      <button class="lp-btn-main" onclick="showAuthFromLanding()">Start Free →</button>
       <button class="lp-btn-sec" onclick="document.getElementById('lpFields').scrollIntoView({behavior:'smooth'})">See Fields ↓</button>
     </div>
   </section>
@@ -508,42 +497,42 @@ function showAuthFromLanding() {
     <div class="lp-eyebrow">All Fields</div>
     <h2 class="lp-section-h">Every medical stream,<br>covered.</h2>
     <div class="lp-grid">
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">🏥</span>
         <div class="lp-field-name">MBBS / MD</div>
         <div class="lp-field-count">19 subjects</div>
       </div>
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">🩺</span>
         <div class="lp-field-name">Nursing</div>
         <div class="lp-field-count">14 subjects</div>
       </div>
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">💊</span>
         <div class="lp-field-name">Pharmacy</div>
         <div class="lp-field-count">11 subjects</div>
       </div>
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">🦷</span>
         <div class="lp-field-name">BDS / Dental</div>
         <div class="lp-field-count">17 subjects</div>
       </div>
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">🏃</span>
         <div class="lp-field-name">Physiotherapy</div>
         <div class="lp-field-count">13 subjects</div>
       </div>
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">🌿</span>
         <div class="lp-field-name">BAMS / Ayurveda</div>
         <div class="lp-field-count">15 subjects</div>
       </div>
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">🌸</span>
         <div class="lp-field-name">Homeopathy</div>
         <div class="lp-field-count">16 subjects</div>
       </div>
-      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
+      <div class="lp-field" onclick="showAuthFromLanding()">
         <span class="lp-field-emoji">🚑</span>
         <div class="lp-field-name">Paramedical</div>
         <div class="lp-field-count">10 subjects</div>
@@ -566,7 +555,7 @@ function showAuthFromLanding() {
           <li>All 9 fields</li>
           <li>MCQ Tests</li>
         </ul>
-        <button class="lp-price-btn-f" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Get started</button>
+        <button class="lp-price-btn-f" onclick="showAuthFromLanding()">Get started</button>
       </div>
       <div class="lp-price-box lp-price-pro">
         <div class="lp-popular">MOST POPULAR</div>
@@ -579,7 +568,7 @@ function showAuthFromLanding() {
           <li>Priority speed</li>
           <li>PDF + Voice input</li>
         </ul>
-        <button class="lp-price-btn-p" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Go Premium</button>
+        <button class="lp-price-btn-p" onclick="showAuthFromLanding()">Go Premium</button>
       </div>
     </div>
   </section>
@@ -588,7 +577,7 @@ function showAuthFromLanding() {
   <div class="lp-bottom">
     <h2>Ready to study<br>smarter? 🚀</h2>
     <p>Join thousands of Indian medical students</p>
-    <button class="lp-bottom-btn" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Start Free — No Card Needed</button>
+    <button class="lp-bottom-btn" onclick="showAuthFromLanding()">Start Free — No Card Needed</button>
   </div>
 
   <!-- FOOTER -->
@@ -604,7 +593,7 @@ function showAuthFromLanding() {
 </div>
 
 <!-- ══ SIGNUP / LOGIN SCREEN ══ -->
-<div id="authScreen" class="auth-screen hidden" style="display:none">
+<div id="authScreen" class="auth-screen hidden">
   <div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at top,#0a0612 0%,#000 60%)"></div>
   <div class="auth-box">
     <div class="auth-logo">V</div>
@@ -1190,10 +1179,10 @@ let cooldownEndTime = null;
 let countdownInterval = null;
 
 function showAuthFromLanding() {
-  var l = document.getElementById('landingScreen');
-  var a = document.getElementById('authScreen');
-  if(l) l.style.display = 'none';
-  if(a) { a.classList.remove('hidden'); a.style.display = 'flex'; }
+  document.getElementById('landingScreen').classList.add('hidden');
+  document.getElementById('authScreen').classList.remove('hidden');
+  document.getElementById('authStep1').style.display = 'block';
+  document.getElementById('authStep2').style.display = 'none';
 }
 
 // Check existing session on load
@@ -1723,4 +1712,302 @@ function renderWelcome(){
       '<button class="wlc-act pay" onclick="showPremium()">💳 Upgrade</button>'+
     '</div>'+
     '<div class="slist">'+btns+'</div></div>';
-  ca.querySelectorAll('.sqb').forEach(b=>b.o
+  ca.querySelectorAll('.sqb').forEach(b=>b.onclick=()=>sendMsg(b.getAttribute('data-q')));
+}
+
+function getSystemMessage(){
+  var s=SECTORS[curSector];
+  var li=lang==='hi'?'Hamesha pure Hindi mein jawab do. Medical terms English mein reh sakte hain.':'Always respond in clear English suitable for medical students.';
+  return 'You are Veda, an expert AI medical tutor on Vion AI.\nSector: '+s.label+' | Subject: '+curSubject+'\n\n'+li+'\n\nFormat every answer like this:\n**Key Point** — direct answer in 1-2 lines\n**Explanation** — detailed, exam-focused\n**High-Yield Exam Fact** — what examiners frequently ask\n**Mnemonic** — include only if genuinely helpful\n\nFor MCQs: explain why each option is right or wrong.\nUse **bold** to highlight key terms.\nBe 100% accurate, concise, and encouraging.\nIf a PDF is attached, base your answer on the PDF contents (summarize / explain / quiz the user as asked).\nYou are Veda — never mention any AI company.';
+}
+
+// ============================================================
+// SEND MESSAGE - Using Secure Backend
+// ============================================================
+async function sendMsg(txt){
+  var ci=document.getElementById('ci');
+  var msg=(txt!==undefined?txt:ci.value).trim();
+  if((!msg && !pendingPDF) || isBusy) return;
+  if(!incrementUsage()) return;
+  ci.value=''; updBtn();
+  var ca=document.getElementById('ca');
+  var wlc=ca.querySelector('.wlc'); if(wlc) wlc.remove();
+  const userMsg = { role:'user', content: msg || (lang==='hi'?'Is PDF par focus karo':'Use the attached PDF') };
+  if (pendingPDF) {
+    userMsg.pdf = { mime: pendingPDF.mime, data: pendingPDF.data, name: pendingPDF.name };
+  }
+  chatHist.push(userMsg);
+  addBubble('user', msg, pendingPDF ? pendingPDF.name : null);
+  const sentPDF = pendingPDF; pendingPDF=null; renderAttachBar();
+  isBusy=true;
+  var lid=addLoader();
+  try{
+    var reply = await callDeepSeek(getSystemMessage(), chatHist);
+    rmNode(lid);
+    addBubble('ai',reply);
+    chatHist.push({role:'assistant',content:reply});
+    saveQA(msg || '(PDF attached)', reply);
+  }catch(e){
+    console.error(e);
+    rmNode(lid);
+    var em=lang==='hi'?'⚠️ त्रुटि: '+e.message+'\n\nकृपया पुनः प्रयास करें।':'⚠️ Error: '+e.message+'\n\nPlease try again.';
+    addBubble('err',em);
+    if(chatHist.length>0 && chatHist[chatHist.length-1].role==='user') chatHist.pop();
+    if(!isPremiumUser){dailyCount--;saveDailyCount();updateUI();}
+  }
+  isBusy=false; updBtn();
+}
+
+function addBubble(type,text,fileName){
+  var ca=document.getElementById('ca');
+  var s=SECTORS[curSector];
+  var d=document.createElement('div');
+  if(type==='user'){
+    d.className='mrow u';
+    const chip = fileName ? `<div class="file-chip">📄 ${xe(fileName)}</div>` : '';
+    d.innerHTML='<div><div style="text-align:right">'+chip+'</div><div class="ubub" style="background:'+s.grad+'">'+xe(text||'(PDF attached)')+'</div></div>';
+  }else if(type==='err'){
+    d.className='mrow';
+    d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub"><div style="color:#ff7a8a">'+xe(text)+'</div></div>';
+  }else{
+    d.className='mrow';
+    d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub">'+fmtAI(text,s.color)+'</div>';
+  }
+  ca.appendChild(d);
+  ca.scrollTop=ca.scrollHeight;
+}
+
+function addLoader(){
+  var ca=document.getElementById('ca');
+  var s=SECTORS[curSector];
+  var id='ld'+Date.now();
+  var d=document.createElement('div');
+  d.className='mrow'; d.id=id;
+  d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub"><div class="dots"><span class="dot" style="background:'+s.color+';animation-delay:0s"></span><span class="dot" style="background:'+s.color+';animation-delay:.15s"></span><span class="dot" style="background:'+s.color+';animation-delay:.3s"></span></div></div>';
+  ca.appendChild(d);
+  ca.scrollTop=ca.scrollHeight;
+  return id;
+}
+
+function rmNode(id){var e=document.getElementById(id); if(e) e.remove();}
+
+function fmtAI(t,c){
+  return t.split('\n').map(l=>{
+    if(/^\*\*[^*]+\*\*/.test(l)) return '<div class="h3" style="color:'+c+'">'+inl(l,c)+'</div>';
+    if(/^[-•] /.test(l)) return '<div class="li">'+inl(l.slice(2),c)+'</div>';
+    if(/^\d+\.\s/.test(l)) return '<div class="li">'+inl(l,c)+'</div>';
+    if(l.trim()==='') return '<div style="height:6px"></div>';
+    return '<div class="pp">'+inl(l,c)+'</div>';
+  }).join('');
+}
+
+function inl(t,c){ return xe(t).replace(/\*\*(.*?)\*\*/g,'<strong style="color:'+c+'">$1</strong>'); }
+
+function xe(s){ return String(s).replace(/[&<>]/g,function(m){ return m==='&'?'&amp;':m==='<'?'&lt;':'>'; }); }
+
+function updBtn(){ document.getElementById('sb').disabled=(!document.getElementById('ci').value.trim() && !pendingPDF) || isBusy; }
+
+// ============================================================
+// PDF Upload
+// ============================================================
+document.getElementById('pdfFile').addEventListener('change', async (e)=>{
+  const file = e.target.files[0]; if (!file) return;
+  if (file.type !== 'application/pdf') { alert('Please pick a PDF file.'); return; }
+  if (file.size > 15*1024*1024) { alert('PDF too large (max 15 MB).'); return; }
+  const b64 = await fileToBase64(file);
+  pendingPDF = { name: file.name, mime:'application/pdf', data: b64 };
+  renderAttachBar();
+  const ci=document.getElementById('ci');
+  if (!ci.value.trim()) { ci.value = lang==='hi' ? 'Is PDF ko summarize karo aur key exam points nikalo.' : 'Summarize this PDF and pull out the key exam points.'; updBtn(); }
+  e.target.value='';
+});
+
+function fileToBase64(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(',')[1]); r.onerror=rej; r.readAsDataURL(file); }); }
+
+function renderAttachBar(){
+  const bar = document.getElementById('attachBar'); if (!bar) return;
+  bar.innerHTML = pendingPDF ? `<span class="attach-pill">📄 ${xe(pendingPDF.name)} <span class="x" onclick="clearPDF()">×</span></span>` : '';
+}
+
+function clearPDF(){ pendingPDF=null; renderAttachBar(); }
+
+// ============================================================
+// Voice Input
+// ============================================================
+let recognition=null, isRecording=false;
+
+function toggleVoice(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('Voice input not supported in this browser. Try Chrome.'); return; }
+  if (isRecording) { recognition && recognition.stop(); return; }
+  recognition = new SR();
+  recognition.lang = lang === 'hi' ? 'hi-IN' : 'en-US';
+  recognition.interimResults = true;
+  recognition.continuous = false;
+  const ci = document.getElementById('ci');
+  const startText = ci.value;
+  recognition.onstart = ()=>{ isRecording=true; document.getElementById('micBtn').classList.add('rec'); };
+  recognition.onend = ()=>{ isRecording=false; document.getElementById('micBtn').classList.remove('rec'); };
+  recognition.onerror = (ev)=>{ isRecording=false; document.getElementById('micBtn').classList.remove('rec'); console.warn('voice',ev); };
+  recognition.onresult = (ev)=>{
+    let txt='';
+    for (let i=0;i<ev.results.length;i++) txt += ev.results[i][0].transcript;
+    ci.value = (startText ? startText+' ' : '') + txt;
+    updBtn();
+  };
+  recognition.start();
+}
+
+// ============================================================
+// MCQ TEST - Using Secure Backend
+// ============================================================
+let mcqState = null;
+
+async function startMCQTest(){
+  if (!curSector || !curSubject) { alert(lang==='hi'?'Pehle ek subject choose karein.':'Please pick a subject first.'); return; }
+  if (!incrementUsage()) return;
+  const s=SECTORS[curSector];
+  document.getElementById('mcqTitle').textContent = s.icon+' '+s.label+' — '+curSubject;
+  document.getElementById('mcqLogo').style.background = s.grad;
+  document.getElementById('mcqBody').innerHTML = `<div class="mcq-card" style="text-align:center"><div style="font-size:36px;margin-bottom:8px">📝</div><div style="font-weight:800;font-size:18px;margin-bottom:6px">${lang==='hi'?'10 MCQ generate ho rahe hain…':'Generating 10 MCQs…'}</div><div style="color:var(--sub);font-size:13px">${xe(curSubject)} · ${lang==='hi'?'thoda intezaar':'a moment'}</div><div class="dots" style="justify-content:center;margin-top:14px"><span class="dot" style="background:${s.color}"></span><span class="dot" style="background:${s.color};animation-delay:.15s"></span><span class="dot" style="background:${s.color};animation-delay:.3s"></span></div></div>`;
+  show('pg-mcq');
+  try {
+    const langInstr = lang==='hi' ? 'Questions Hinglish (Hindi+English medical terms) mein likhein.' : 'Questions in clear English.';
+    const prompt = `Generate exactly 10 high-quality MCQs for ${s.label} → ${curSubject}.
+${langInstr}
+Each MCQ must be syllabus-relevant, exam-style, with 4 options (A,B,C,D), exactly one correct.
+Mix difficulty: 4 easy, 4 medium, 2 hard.
+Cover different topics within the subject — do NOT repeat the same concept.
+Return ONLY valid JSON, no markdown, this exact shape:
+{"questions":[{"q":"question text","options":["A text","B text","C text","D text"],"correct":0,"explanation":"why the correct option is right (1-2 lines)"}]}
+"correct" is the 0-based index. Provide exactly 10 items.`;
+    
+    const raw = await generateMCQ(prompt);
+    let parsed;
+    try { parsed = JSON.parse(raw); }
+    catch(e){ const m = raw.match(/\{[\s\S]*\}/); parsed = m ? JSON.parse(m[0]) : null; }
+    if (!parsed || !Array.isArray(parsed.questions) || parsed.questions.length < 1) throw new Error('Could not parse MCQs');
+    mcqState = { questions: parsed.questions.slice(0,10), idx: 0, score: 0, answers: [] };
+    renderMCQ();
+  } catch(e){
+    document.getElementById('mcqBody').innerHTML = `<div class="mcq-card"><div style="color:#ff7a8a;font-weight:700">⚠️ ${xe(e.message)}</div><button class="mcq-next show" onclick="startMCQTest()">↻ Retry</button></div>`;
+    if(!isPremiumUser){dailyCount--;saveDailyCount();updateUI();}
+  }
+}
+
+function renderMCQ(){
+  const body = document.getElementById('mcqBody');
+  const total = mcqState.questions.length;
+  if (mcqState.idx >= total) { renderMCQResult(); return; }
+  const q = mcqState.questions[mcqState.idx];
+  const pct = (mcqState.idx / total) * 100;
+  const letters = ['A','B','C','D','E'];
+  const opts = (q.options||[]).map((o,i)=>`<button class="mcq-opt" data-i="${i}"><span class="letter">${letters[i]}</span><span>${xe(o)}</span></button>`).join('');
+  body.innerHTML = `
+    <div class="mcq-progress">
+      <div class="mcq-prog-bar"><div class="mcq-prog-fill" style="width:${pct}%"></div></div>
+      <div class="mcq-prog-txt">${mcqState.idx+1} / ${total}</div>
+    </div>
+    <div class="mcq-card">
+      <div class="mcq-qnum">${lang==='hi'?'Sawaal':'Question'} ${mcqState.idx+1}</div>
+      <div class="mcq-q">${xe(q.q)}</div>
+      <div class="mcq-opts" id="mcqOpts">${opts}</div>
+      <div class="mcq-expl" id="mcqExpl"></div>
+      <button class="mcq-next" id="mcqNext" onclick="nextMCQ()">${lang==='hi'?'Agla sawaal →':'Next question →'}</button>
+    </div>`;
+  body.querySelectorAll('.mcq-opt').forEach(b=>b.onclick = ()=>pickMCQ(parseInt(b.dataset.i)));
+}
+
+function pickMCQ(i){
+  const q = mcqState.questions[mcqState.idx];
+  const correct = Number(q.correct);
+  const btns = document.querySelectorAll('#mcqOpts .mcq-opt');
+  btns.forEach((b,bi)=>{
+    b.disabled = true;
+    if (bi === correct) b.classList.add('correct');
+    else if (bi === i) b.classList.add('wrong');
+  });
+  const isRight = i === correct;
+  if (isRight) mcqState.score++;
+  mcqState.answers.push({ q:q.q, picked:i, correct, right:isRight });
+  const ex = document.getElementById('mcqExpl');
+  ex.innerHTML = `<b>${isRight ? (lang==='hi'?'✅ Sahi!':'✅ Correct!') : (lang==='hi'?'❌ Galat.':'❌ Wrong.')}</b> ${xe(q.explanation||'')}`;
+  ex.classList.add('show');
+  document.getElementById('mcqNext').classList.add('show');
+  if (mcqState.idx === mcqState.questions.length - 1) {
+    document.getElementById('mcqNext').textContent = lang==='hi' ? 'Result dekhein 🎯' : 'See result 🎯';
+  }
+}
+
+function nextMCQ(){ mcqState.idx++; renderMCQ(); }
+
+function renderMCQResult(){
+  const body = document.getElementById('mcqBody');
+  const total = mcqState.questions.length;
+  const score = mcqState.score;
+  const pct = Math.round((score/total)*100);
+  let grade, tag;
+  if (pct >= 90) { grade='🔥 Outstanding!'; tag=lang==='hi'?'Tu toh topper hai!':"You're a topper!"; }
+  else if (pct >= 70) { grade='💪 Great work!'; tag=lang==='hi'?'Bahut badhiya, thoda aur push.':'Solid — keep pushing.'; }
+  else if (pct >= 50) { grade='📈 Keep going'; tag=lang==='hi'?'Revision karke wapas aao.':'Revise and retake.'; }
+  else { grade='📚 Needs revision'; tag=lang==='hi'?'Concepts dohraen, phir test do.':'Brush up concepts and retry.'; }
+  body.innerHTML = `<div class="mcq-result">
+    <div class="mcq-score">${score}<small>/${total}</small></div>
+    <div class="mcq-grade">${grade}</div>
+    <div class="mcq-tag">${xe(tag)} · ${pct}%</div>
+    <div class="mcq-acts">
+      <button class="primary" onclick="startMCQTest()">↻ ${lang==='hi'?'Naya test':'New test'}</button>
+      <button class="secondary" onclick="exitMCQ()">${lang==='hi'?'Chat par wapas':'Back to chat'}</button>
+    </div>
+  </div>`;
+}
+
+function exitMCQ(){ mcqState=null; show('pg-chat'); }
+
+// ============================================================
+// INIT
+// ============================================================
+if (!checkAuth()) { /* wait */ } else { fetchPremiumList(); }
+
+document.getElementById('ci').addEventListener('input',updBtn);
+document.getElementById('ci').addEventListener('keydown',function(e){
+  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMsg(); }
+});
+document.getElementById('sb').onclick=function(){ sendMsg(); };
+
+// EXPOSE GLOBALS
+window.upgradeToPremium = upgradeToPremium;
+window.upgradeToCollege = upgradeToCollege;
+window.showPremium = showPremium;
+window.setLang = setLang;
+window.show = show;
+window.logoutUser = logoutUser;
+window.adminAddEmail = adminAddEmail;
+window.adminRemoveEmail = adminRemoveEmail;
+window.adminManualRemove = adminManualRemove;
+window.closeAdminPanel = closeAdminPanel;
+window.watchAd = watchAd;
+window.closeAdModal = closeAdModal;
+window.showAdModal = showAdModal;
+window.startMCQTest = startMCQTest;
+window.nextMCQ = nextMCQ;
+window.exitMCQ = exitMCQ;
+window.toggleVoice = toggleVoice;
+window.clearPDF = clearPDF;
+window.downloadData = downloadData;
+window.isAdmin = isAdmin;
+window.showAdminPanel = showAdminPanel;
+window.initiatePayment = initiatePayment;
+window.processPayment = processPayment;
+window.selectUPI = selectUPI;
+window.checkPremiumExpiry = checkPremiumExpiry;
+
+console.log('🚀 HealthPulse Pro loaded (SECURE - no API key in frontend!)');
+console.log('🔐 Admin mode: ' + (isAdmin() ? 'ACTIVE' : 'inactive'));
+console.log('📌 To activate admin: add ?admin=' + SECRET_KEY + ' to the URL');
+console.log('💳 UPI Payment: Integrated');
+console.log('👑 Premium: Auto-activation with expiry (30/365 days)');
+console.log('⏰ Auto-expiry: Active');
+</script>
+</body>
+</html>
