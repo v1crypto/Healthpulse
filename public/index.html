@@ -7,6 +7,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>
+// Global function — available immediately
+function showAuthFromLanding() {
+  var l = document.getElementById('landingScreen');
+  var a = document.getElementById('authScreen');
+  if(l) l.style.display = 'none';
+  if(a) { a.style.display = 'flex'; a.classList.remove('hidden'); }
+}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
@@ -416,7 +425,7 @@
 <!-- ══════════════════════════════════
      VION AI — LANDING PAGE
 ══════════════════════════════════ -->
-<div id="landingScreen" class="lp">
+<div id="landingScreen" class="lp" style="display:flex">
 
   <!-- NAV -->
   <nav class="lp-nav">
@@ -424,7 +433,7 @@
       <div class="lp-brand-icon">V</div>
       <div class="lp-brand-name">Vion <em>AI</em></div>
     </div>
-    <button class="lp-nav-login" onclick="showAuthFromLanding()" style="background:var(--grad-main);color:#000;border:none;padding:7px 18px;border-radius:99px;font-weight:800">✨ Start Free</button>
+    <button class="lp-nav-login" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Login →</button>
   </nav>
 
   <!-- HERO -->
@@ -449,7 +458,7 @@
     </div>
 
     <div class="lp-cta-row">
-      <button class="lp-btn-main" onclick="showAuthFromLanding()">Start Free →</button>
+      <button class="lp-btn-main" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Start Free →</button>
       <button class="lp-btn-sec" onclick="document.getElementById('lpFields').scrollIntoView({behavior:'smooth'})">See Fields ↓</button>
     </div>
   </section>
@@ -499,42 +508,42 @@
     <div class="lp-eyebrow">All Fields</div>
     <h2 class="lp-section-h">Every medical stream,<br>covered.</h2>
     <div class="lp-grid">
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">🏥</span>
         <div class="lp-field-name">MBBS / MD</div>
         <div class="lp-field-count">19 subjects</div>
       </div>
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">🩺</span>
         <div class="lp-field-name">Nursing</div>
         <div class="lp-field-count">14 subjects</div>
       </div>
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">💊</span>
         <div class="lp-field-name">Pharmacy</div>
         <div class="lp-field-count">11 subjects</div>
       </div>
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">🦷</span>
         <div class="lp-field-name">BDS / Dental</div>
         <div class="lp-field-count">17 subjects</div>
       </div>
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">🏃</span>
         <div class="lp-field-name">Physiotherapy</div>
         <div class="lp-field-count">13 subjects</div>
       </div>
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">🌿</span>
         <div class="lp-field-name">BAMS / Ayurveda</div>
         <div class="lp-field-count">15 subjects</div>
       </div>
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">🌸</span>
         <div class="lp-field-name">Homeopathy</div>
         <div class="lp-field-count">16 subjects</div>
       </div>
-      <div class="lp-field" onclick="showAuthFromLanding()">
+      <div class="lp-field" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">
         <span class="lp-field-emoji">🚑</span>
         <div class="lp-field-name">Paramedical</div>
         <div class="lp-field-count">10 subjects</div>
@@ -557,12 +566,12 @@
           <li>All 9 fields</li>
           <li>MCQ Tests</li>
         </ul>
-        <button class="lp-price-btn-f" onclick="showAuthFromLanding()">Get started</button>
+        <button class="lp-price-btn-f" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Get started</button>
       </div>
       <div class="lp-price-box lp-price-pro">
         <div class="lp-popular">MOST POPULAR</div>
         <div class="lp-price-label" style="color:var(--lime)">👑 Premium</div>
-        <div class="lp-price-num">₹200</div>
+        <div class="lp-price-num">₹149</div>
         <div class="lp-price-per">/month</div>
         <ul class="lp-price-list">
           <li>Unlimited questions</li>
@@ -570,7 +579,7 @@
           <li>Priority speed</li>
           <li>PDF + Voice input</li>
         </ul>
-        <button class="lp-price-btn-p" onclick="showAuthFromLanding()">Go Premium</button>
+        <button class="lp-price-btn-p" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Go Premium</button>
       </div>
     </div>
   </section>
@@ -579,7 +588,7 @@
   <div class="lp-bottom">
     <h2>Ready to study<br>smarter? 🚀</h2>
     <p>Join thousands of Indian medical students</p>
-    <button class="lp-bottom-btn" onclick="showAuthFromLanding()">Start Free — No Card Needed</button>
+    <button class="lp-bottom-btn" onclick="document.getElementById('landingScreen').style.display='none';document.getElementById('authScreen').classList.remove('hidden')">Start Free — No Card Needed</button>
   </div>
 
   <!-- FOOTER -->
@@ -595,7 +604,7 @@
 </div>
 
 <!-- ══ SIGNUP / LOGIN SCREEN ══ -->
-<div id="authScreen" class="auth-screen hidden">
+<div id="authScreen" class="auth-screen hidden" style="display:none">
   <div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at top,#0a0612 0%,#000 60%)"></div>
   <div class="auth-box">
     <div class="auth-logo">V</div>
@@ -1183,12 +1192,8 @@ let countdownInterval = null;
 function showAuthFromLanding() {
   var l = document.getElementById('landingScreen');
   var a = document.getElementById('authScreen');
-  if(l) { l.style.display = 'none'; l.classList.add('hidden'); }
+  if(l) l.style.display = 'none';
   if(a) { a.classList.remove('hidden'); a.style.display = 'flex'; }
-  document.getElementById('authStep1').style.display = 'block';
-  document.getElementById('authStep2').style.display = 'none';
-  document.getElementById('authError').classList.remove('show');
-  document.getElementById('otpError').classList.remove('show');
 }
 
 // Check existing session on load
@@ -1718,14 +1723,4 @@ function renderWelcome(){
       '<button class="wlc-act pay" onclick="showPremium()">💳 Upgrade</button>'+
     '</div>'+
     '<div class="slist">'+btns+'</div></div>';
-  ca.querySelectorAll('.sqb').forEach(b=>b.onclick=()=>sendMsg(b.getAttribute('data-q')));
-}
-
-function getSystemMessage(){
-  var s=SECTORS[curSector];
-  var li=lang==='hi'?'Hamesha pure Hindi mein jawab do. Medical terms English mein reh sakte hain.':'Always respond in clear English suitable for medical students.';
-  return 'You are Veda, an expert AI medical tutor on Vion AI.\nSector: '+curSector+'\nSubject: '+curSubject+'\n'+li;
-}
-</script>
-</body>
-</html>
+  ca.querySelectorAll('.sqb').forEach(b=>b.o
