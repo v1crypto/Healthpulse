@@ -7,14 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<script>
-function showAuthFromLanding() {
-  var l = document.getElementById('landingScreen');
-  var a = document.getElementById('authScreen');
-  if(l){ l.style.display='none'; l.classList.add('hidden'); }
-  if(a){ a.style.display='flex'; a.classList.remove('hidden'); }
-}
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
@@ -422,7 +414,7 @@ function showAuthFromLanding() {
 <!-- ══════════════════════════════════
      VION AI — LANDING PAGE
 ══════════════════════════════════ -->
-<div id="landingScreen" class="lp" style="display:flex;position:fixed;inset:0;z-index:9998;background:#050508;overflow-y:auto;flex-direction:column">
+<div id="landingScreen" class="lp">
 
   <!-- NAV -->
   <nav class="lp-nav">
@@ -601,7 +593,7 @@ function showAuthFromLanding() {
 </div>
 
 <!-- ══ SIGNUP / LOGIN SCREEN ══ -->
-<div id="authScreen" class="auth-screen hidden" style="display:none">
+<div id="authScreen" class="auth-screen hidden">
   <div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at top,#0a0612 0%,#000 60%)"></div>
   <div class="auth-box">
     <div class="auth-logo">V</div>
@@ -1172,7 +1164,16 @@ function adminManualRemove(e) {
 // ── Supabase Init ────────────────────────────────────────────
 const SUPA_URL = 'https://rnmovgktobwyrifwrrji.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJubW92Z2t0b2J3eXJpZndycmppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNTg1NTIsImV4cCI6MjA5NzkzNDU1Mn0.3iI_TZ4Q6awJ6rcJaTjBqtmPOgL36npGyDImfzN4ARo';
-const sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+let sb = null;
+try {
+  if (window.supabase) {
+    sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+  } else {
+    console.error('Supabase SDK not loaded!');
+  }
+} catch(e) {
+  console.error('Supabase init error:', e);
+}
 
 let premiumEmails = [];
 let isPremiumUser = false;
@@ -1187,11 +1188,6 @@ let cooldownEndTime = null;
 let countdownInterval = null;
 
 function showAuthFromLanding() {
-  var l=document.getElementById('landingScreen');
-  var a=document.getElementById('authScreen');
-  if(l){l.style.display='none';}
-  if(a){a.style.display='flex';a.classList.remove('hidden');}
-  // old line below kept for reference
   document.getElementById('landingScreen').classList.add('hidden');
   document.getElementById('authScreen').classList.remove('hidden');
   document.getElementById('authStep1').style.display = 'block';
@@ -1199,30 +1195,31 @@ function showAuthFromLanding() {
 }
 
 // Check existing session on load
-sb.auth.getSession().then(({ data: { session } }) => {
-  var lp = document.getElementById('landingScreen');
-  var auth = document.getElementById('authScreen');
+if(sb) sb.auth.getSession().then(({ data: { session } }) => {
   if (session?.user?.email) {
+    // Already logged in — skip landing + auth, go to app
     currentUserEmail = session.user.email;
     localStorage.setItem('userEmail', currentUserEmail);
-    if(lp) lp.style.display='none';
-    if(auth) auth.style.display='none';
+    document.getElementById('landingScreen').classList.add('hidden');
+    document.getElementById('authScreen').classList.add('hidden');
     fetchPremiumList();
   } else {
     currentUserEmail = localStorage.getItem('userEmail');
     if (currentUserEmail) {
-      if(lp) lp.style.display='none';
-      if(auth) auth.style.display='none';
+      // Remembered user — skip landing + auth, go to app
+      document.getElementById('landingScreen').classList.add('hidden');
+      document.getElementById('authScreen').classList.add('hidden');
       fetchPremiumList();
     } else {
-      if(lp) lp.style.display='flex';
-      if(auth) auth.style.display='none';
+      // New visitor — show landing page
+      document.getElementById('landingScreen').classList.remove('hidden');
+      document.getElementById('authScreen').classList.add('hidden');
     }
   }
 });
 
 // Magic link से वापस आने पर auto-login
-sb.auth.onAuthStateChange((event, session) => {
+if(sb) sb.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session?.user?.email) {
     currentUserEmail = session.user.email;
     localStorage.setItem('userEmail', currentUserEmail);
@@ -1245,15 +1242,21 @@ async function handleSignup() {
   const input = document.getElementById('authEmail');
   const errEl = document.getElementById('authError');
   const btn = document.getElementById('authSendBtn');
-  const email = input.value.trim().toLowerCase();
+  const email = input ? input.value.trim().toLowerCase() : '';
   if (!email || !email.includes('@') || !email.includes('.')) {
-    errEl.classList.add('show');
-    input.focus();
+    if(errEl) errEl.classList.add('show');
+    if(input) input.focus();
     return;
   }
-  errEl.classList.remove('show');
-  btn.textContent = '⏳ भेज रहे हैं...';
-  btn.disabled = true;
+  if(errEl) errEl.classList.remove('show');
+  if(btn) { btn.textContent = '⏳ भेज रहे हैं...'; btn.disabled = true; }
+  
+  if (!sb) {
+    if(errEl) { errEl.textContent = '⚠️ Connection error — page reload करो'; errEl.classList.add('show'); }
+    if(btn) { btn.textContent = '🚀 Code भेजो →'; btn.disabled = false; }
+    return;
+  }
+  
   try {
     const { error } = await sb.auth.signInWithOtp({
       email,
@@ -1737,5 +1740,4 @@ function getSystemMessage(){
 // SEND MESSAGE - Using Secure Backend
 // ============================================================
 async function sendMsg(txt){
-  var ci=document.getElementById('ci');
-  var msg=(txt!==un
+  var ci=document.ge
