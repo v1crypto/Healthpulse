@@ -1331,10 +1331,22 @@ function adminManualRemove(e) {
 // ORIGINAL APP CODE
 // ============================================================
 
-// ── Supabase Init ────────────────────────────────────────────
+// ── Supabase Init (guarded — never crashes the whole script) ──
 const SUPA_URL = 'https://rnmovgktobwyrifwrrji.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJubW92Z2t0b2J3eXJpZndycmppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNTg1NTIsImV4cCI6MjA5NzkzNDU1Mn0.3iI_TZ4Q6awJ6rcJaTjBqtmPOgL36npGyDImfzN4ARo';
-const sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+let sb = null;
+function initSupabase() {
+  try {
+    if (window.supabase && window.supabase.createClient) {
+      sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+      return true;
+    }
+  } catch(e) { console.error('Supabase init failed:', e); }
+  return false;
+}
+initSupabase();
+// Retry once after a short delay in case CDN was still loading
+if (!sb) setTimeout(initSupabase, 800);
 
 let premiumEmails = [];
 let isPremiumUser = false;
@@ -1356,7 +1368,7 @@ function showAuthFromLanding() {
 }
 
 // Check existing session on load
-sb.auth.getSession().then(({ data: { session } }) => {
+if (sb) sb.auth.getSession().then(({ data: { session } }) => {
   if (session?.user?.email) {
     // Already logged in — skip landing + auth, go to app
     currentUserEmail = session.user.email;
@@ -1380,7 +1392,7 @@ sb.auth.getSession().then(({ data: { session } }) => {
 });
 
 // Magic link से वापस आने पर auto-login
-sb.auth.onAuthStateChange((event, session) => {
+if (sb) sb.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session?.user?.email) {
     currentUserEmail = session.user.email;
     localStorage.setItem('userEmail', currentUserEmail);
@@ -1405,6 +1417,7 @@ async function handleSignup() {
   const btn = document.getElementById('authSendBtn');
   const email = input.value.trim().toLowerCase();
   if (!email || !email.includes('@') || !email.includes('.')) {
+    errEl.textContent = '⚠️ Valid email डालो (@ होना चाहिए)';
     errEl.classList.add('show');
     input.focus();
     return;
@@ -1412,17 +1425,33 @@ async function handleSignup() {
   errEl.classList.remove('show');
   btn.textContent = '⏳ भेज रहे हैं...';
   btn.disabled = true;
+
+  if (!sb) initSupabase();
+  if (!sb) {
+    errEl.textContent = '⚠️ Connection error — page reload करो (नीचे 🔄 दबाओ)';
+    errEl.classList.add('show');
+    btn.textContent = '🚀 Code भेजो →';
+    btn.disabled = false;
+    return;
+  }
+
   try {
-    const { error } = await sb.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: window.location.origin }
-    });
+    // Pure OTP flow — no emailRedirectTo, so Supabase sends a code not a magic link
+    const { error } = await sb.auth.signInWithOtp({ email });
     if (error) throw error;
     document.getElementById('authStep1').style.display = 'none';
     document.getElementById('authStep2').style.display = 'block';
     document.getElementById('otpEmailShow').textContent = email;
   } catch(err) {
-    errEl.textContent = '⚠️ Error: ' + (err.message || 'दोबारा try करो');
+    console.error('Supabase OTP error:', err);
+    let msg = err.message || 'दोबारा try करो';
+    // Translate common Supabase errors to clear Hindi
+    if (/rate limit|too many/i.test(msg)) {
+      msg = '⏳ बहुत ज़्यादा try हो गए — कुछ मिनट रुककर फिर try करो (Rate limit)';
+    } else if (/smtp|email/i.test(msg) && /not configured|failed/i.test(msg)) {
+      msg = '📧 Email service में problem है — Supabase SMTP setting check करो';
+    }
+    errEl.textContent = '⚠️ ' + msg;
     errEl.classList.add('show');
     btn.textContent = '🚀 Code भेजो →';
     btn.disabled = false;
@@ -1440,6 +1469,14 @@ async function verifyOtp() {
   }
   btn.textContent = '⏳ Verify हो रहा है...';
   btn.disabled = true;
+  if (!sb) initSupabase();
+  if (!sb) {
+    errEl.textContent = '⚠️ Connection error — page reload करो';
+    errEl.classList.add('show');
+    btn.textContent = '✅ Verify करो →';
+    btn.disabled = false;
+    return;
+  }
   try {
     const { data, error } = await sb.auth.verifyOtp({ email, token: otp, type: 'email' });
     if (error) throw error;
@@ -1674,48 +1711,4 @@ function watchAd() {
       const countdown = document.getElementById('adCountdown');
       countdown.textContent = t;
       if (countdownInterval) clearInterval(countdownInterval);
-      countdownInterval = setInterval(() => {
-        t--;
-        countdown.textContent = t;
-        if (t <= 0) {
-          clearInterval(countdownInterval);
-          countdownInterval = null;
-          btn.disabled = false;
-        }
-      }, 1000);
-    } else {
-      adWatchCount = 2;
-      DAILY_LIMIT = 10;
-      saveDailyCount();
-      closeAdModal();
-      alert('🎉 +5 questions added! You now have ' + (DAILY_LIMIT - dailyCount) + ' questions left.');
-    }
-  } else {
-    adWatchCount = 1;
-    DAILY_LIMIT = 10;
-    saveDailyCount();
-    closeAdModal();
-    alert('🎉 +5 questions added! You now have ' + (DAILY_LIMIT - dailyCount) + ' questions left.');
-  }
-  updateUI();
-}
-
-function updateUI() {
-  const uc = document.getElementById('usageCount');
-  const fill = document.getElementById('usageFill');
-  const msg = document.getElementById('upgradeMsg');
-  const cd = document.getElementById('cooldownDisplay');
-  
-  if (!uc) return;
-  
-  if (isPremiumUser) {
-    uc.innerHTML = '♾️ Unlimited';
-    fill.style.width = '100%';
-    msg.innerHTML = '👑 Premium active — unlimited & ad-free';
-    if (cd) cd.style.display = 'none';
-    return;
-  }
-  
-  if (cooldownEndTime && cooldownEndTime > new Date()) {
-    const remaining = Math.ceil((cooldownEndTime - new Date()) / (1000 * 60 * 60));
-    cd.style.displa
+      countdownInterval = setInter
