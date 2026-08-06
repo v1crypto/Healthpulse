@@ -4,36 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Vion AI · Veda AI ✨</title>
+ <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<script>
-// Critical functions - load before everything else
-window.openPage = function(id) {
-  var el = document.getElementById(id);
-  if (el) { el.style.display = 'flex'; el.scrollTop = 0; }
-};
-window.closePage = function(id) {
-  var el = document.getElementById(id);
-  if (el) el.style.display = 'none';
-};
-window.showAuthFromLanding = function() {
-  var l = document.getElementById('landingScreen');
-  var a = document.getElementById('authScreen');
-  if (l) l.style.display = 'none';
-  if (a) a.style.display = 'flex';
-};
-window.sendMsg = function() {
-  var n = (document.getElementById('cName')||{value:''}).value.trim();
-  var e = (document.getElementById('cEmail')||{value:''}).value.trim();
-  var s = (document.getElementById('cSubject')||{value:''}).value.trim();
-  var m = (document.getElementById('cMsg')||{value:''}).value.trim();
-  if (!n || !e || !m) { alert('Name, email aur message zaroori hai!'); return; }
-  window.location.href = 'mailto:vionai.pvt.ltd@gmail.com?subject=' + encodeURIComponent(s || 'Message from ' + n) + '&body=' + encodeURIComponent('From: ' + n + ' (' + e + ')\n\n' + m);
-  var ok = document.getElementById('cSuccess');
-  if (ok) ok.style.display = 'block';
-};
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
@@ -434,128 +408,7 @@ window.sendMsg = function() {
   .lp-foot-links{display:flex;gap:18px}
   .lp-foot-links a{font-size:11px;color:#5a5a72;font-family:'Outfit';text-decoration:none}
   .lp-foot-copy{font-size:11px;color:#3a3a52;font-family:'JetBrains Mono'}
-
-  /* ══ LEGAL PAGES ══ */
-  .lp-page{position:fixed;inset:0;z-index:99999;background:#050508;overflow-y:auto;display:none;flex-direction:column}
-  .lp-page-nav{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(5,5,8,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07)}
-  .lp-page-back{background:transparent;border:1.5px solid rgba(255,255,255,.15);color:#f0f0f5;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit'}
-  .lp-page-title{font-size:15px;font-weight:800;font-family:'Outfit';color:#f0f0f5}
-  .lp-page-body{padding:28px 20px 60px;max-width:660px;margin:0 auto;width:100%;box-sizing:border-box}
-  .lp-page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(194,255,61,.07);border:1px solid rgba(194,255,61,.2);color:#c2ff3d;font-size:10px;font-family:'JetBrains Mono';font-weight:700;letter-spacing:.12em;padding:5px 12px;border-radius:99px;margin-bottom:14px;text-transform:uppercase}
-  .lp-page-h1{font-size:28px;font-weight:900;font-family:'Outfit';color:#f0f0f5;margin-bottom:6px;line-height:1.15}
-  .lp-page-date{font-size:11px;color:#5a5a72;font-family:'JetBrains Mono';display:block;margin-bottom:24px}
-  .l-sec{margin-bottom:14px;background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px}
-  .l-sec h2{font-size:14px;font-weight:700;font-family:'Outfit';color:#c2ff3d;margin:0 0 10px}
-  .l-sec p,.l-sec li{font-size:13px;color:#9090b8;line-height:1.75;font-family:'Outfit'}
-  .l-sec ul{padding-left:18px;margin:6px 0 0}
-  .l-sec li{margin-bottom:5px}
-  .l-sec a{color:#c2ff3d;text-decoration:none}
-  .l-hi{background:rgba(194,255,61,.06);border:1px solid rgba(194,255,61,.15);border-radius:10px;padding:12px;margin-top:10px}
-  .l-hi p{color:#d0d0f0;font-size:12px;line-height:1.6}
-  .c-card{background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px;margin-bottom:10px}
-  .c-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-  .c-lbl{font-size:10px;color:#5a5a72;font-family:'JetBrains Mono';letter-spacing:.08em;margin-bottom:3px}
-  .c-val{font-size:14px;font-weight:700;color:#f0f0f5;font-family:'Outfit'}
-  .c-in{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);color:#f0f0f5;padding:12px 14px;border-radius:12px;font-size:14px;font-family:'Outfit';outline:none;box-sizing:border-box;margin-bottom:10px;display:block;transition:border-color .2s}
-  .c-in:focus{border-color:rgba(194,255,61,.4)}
-  .c-in::placeholder{color:rgba(255,255,255,.2)}
-  .c-ta{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);color:#f0f0f5;padding:12px 14px;border-radius:12px;font-size:14px;font-family:'Outfit';outline:none;resize:vertical;min-height:100px;box-sizing:border-box;margin-bottom:10px;display:block;transition:border-color .2s}
-  .c-ta:focus{border-color:rgba(194,255,61,.4)}
-  .c-send{width:100%;background:linear-gradient(135deg,#c2ff3d,#00e5ff);border:none;color:#000;padding:14px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Outfit'}
-
-  .lp-page{position:fixed;inset:0;z-index:99999;background:#050508;overflow-y:auto;flex-direction:column}
-  .lp-page-nav{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(5,5,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
-  .lp-page-back{background:transparent;border:1.5px solid rgba(255,255,255,.12);color:#f0f0f5;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit'}
-  .lp-page-title{font-size:15px;font-weight:800;font-family:'Outfit';color:#f0f0f5}
-  .lp-page-body{padding:28px 20px 60px;max-width:660px;margin:0 auto;width:100%}
-  .lp-page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(194,255,61,.07);border:1px solid rgba(194,255,61,.2);color:#c2ff3d;font-size:10px;font-family:'JetBrains Mono';font-weight:700;letter-spacing:.12em;padding:5px 12px;border-radius:99px;margin-bottom:14px;text-transform:uppercase}
-  .lp-page-h1{font-size:28px;font-weight:900;font-family:'Outfit';color:#f0f0f5;margin-bottom:8px}
-  .lp-page-date{font-size:11px;color:#5a5a72;font-family:'JetBrains Mono';display:block;margin-bottom:24px}
-  .lp-page-sec{margin-bottom:14px;background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:18px}
-  .lp-page-sec h2{font-size:14px;font-weight:700;color:#c2ff3d;margin-bottom:10px;font-family:'Outfit'}
-  .lp-page-sec p,.lp-page-sec li{font-size:13px;color:#9090b8;line-height:1.75;font-family:'Outfit'}
-  .lp-page-sec ul{padding-left:18px;margin-top:6px}
-  .lp-page-sec li{margin-bottom:5px}
-  .lp-page-sec a{color:#c2ff3d;text-decoration:none}
-  .lp-hi{background:rgba(194,255,61,.06);border:1px solid rgba(194,255,61,.15);border-radius:10px;padding:12px;margin-top:10px}
-  .lp-hi p{font-size:13px;color:#d0d0f0;line-height:1.6}
-  .cc-card{background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:10px}
-  .cc-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-  .cc-lbl{font-size:10px;color:#5a5a72;font-family:'JetBrains Mono';margin-bottom:3px;letter-spacing:.08em}
-  .cc-val{font-size:14px;font-weight:700;color:#f0f0f5;font-family:'Outfit'}
-  .cc-in{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);color:#f0f0f5;padding:12px 16px;border-radius:14px;font-size:14px;font-family:'Outfit';outline:none;box-sizing:border-box;margin-bottom:10px}
-  .cc-in::placeholder{color:rgba(255,255,255,.2)}
-  .cc-ta{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);color:#f0f0f5;padding:12px 16px;border-radius:14px;font-size:14px;font-family:'Outfit';outline:none;resize:vertical;min-height:110px;box-sizing:border-box;margin-bottom:10px}
-  .cc-send{width:100%;background:linear-gradient(135deg,#c2ff3d,#00e5ff);border:none;color:#000;padding:14px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Outfit'}
-
-  .lp-page-h1{font-size:26px;font-weight:900;font-family:'Outfit';color:#f0f0f5;margin-bottom:8px}
-  .lp-page-date{font-size:11px;color:#5a5a72;font-family:'JetBrains Mono';display:block;margin-bottom:22px}
-  .lp-page-title{font-size:15px;font-weight:800;font-family:'Outfit';color:#f0f0f5}
-  .lp-page-sec{margin-bottom:14px;background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:18px}
-  .lp-page-sec h2{font-size:14px;font-weight:700;color:#c2ff3d;margin-bottom:10px;font-family:'Outfit'}
-  .lp-page-sec p,.lp-page-sec li{font-size:13px;color:#9090b8;line-height:1.75;font-family:'Outfit'}
-  .lp-page-sec ul{padding-left:18px;margin-top:6px}
-  .lp-page-sec li{margin-bottom:5px}
-  .lp-page-sec a{color:#c2ff3d;text-decoration:none}
-
-  .lp-faq-item{background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:border-color .2s}
-  .lp-faq-item:hover{border-color:rgba(194,255,61,.25)}
-  .lp-faq-q{display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .lp-faq-q span:first-child{font-size:14px;font-weight:700;color:#f0f0f5;font-family:'Outfit';line-height:1.4}
-  .lp-faq-arrow{font-size:14px;color:#c2ff3d;flex-shrink:0;transition:transform .25s}
-  .lp-faq-item.open .lp-faq-arrow{transform:rotate(180deg)}
-  .lp-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-  .lp-faq-item.open .lp-faq-a{max-height:220px;margin-top:12px}
-  .lp-faq-a p{font-size:13px;color:#9090b8;line-height:1.7;font-family:'Outfit'}
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Vion AI क्या है?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Vion AI भारत का AI मेडिकल ट्यूटर है, जो Veda AI द्वारा संचालित है। यह MBBS, BAMS, BDS, Nursing, Pharmacy, Physiotherapy, Homeopathy और Paramedical जैसे 9 मेडिकल स्ट्रीम्स के 100+ विषयों में हिंदी और अंग्रेजी दोनों भाषाओं में instant, exam-ready जवाब देता है।"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "MBBS के लिए Hindi में AI tutor कौन सा अच्छा है?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Vion AI MBBS students के लिए हिंदी और अंग्रेजी दोनों में सपोर्ट देने वाला AI tutor है। यह 19 MBBS विषयों को कवर करता है, voice और PDF input स्वीकार करता है, और प्रत्येक विषय के लिए 10-प्रश्नों वाला MCQ टेस्ट भी देता है।"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Vion AI कौन-कौन से मेडिकल स्ट्रीम्स को कवर करता है?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Vion AI 9 मेडिकल स्ट्रीम्स को कवर करता है: MBBS/MD (19 विषय), Nursing (14 विषय), Pharmacy (11 विषय), BDS/Dental (17 विषय), Physiotherapy (13 विषय), BAMS/Ayurveda (15 विषय), Homeopathy (16 विषय), Paramedical (10 विषय), और General Health।"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Vion AI का प्राइस क्या है?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Vion AI का Free plan हमेशा के लिए मुफ्त है, जिसमें रोज़ाना 5 सवाल पूछे जा सकते हैं (ad देखकर 5 और मिलते हैं)। Premium plan ₹200/महीना है, जिसमें unlimited सवाल, no ads, priority speed, और PDF + Voice input मिलता है।"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Vion AI कैसे काम करता है?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "तीन आसान स्टेप्स में: पहले अपना field और subject चुनें (MBBS, BAMS, BDS, Nursing, Pharmacy, Physio)। फिर voice या text में कोई भी सवाल पूछें — PDF नोट्स भी अपलोड कर सकते हैं। अंत में instant, exam-ready जवाब पाएं साथ में हर subject के लिए 10-MCQ टेस्ट भी उपलब्ध है।"
-      }
-    }
-  ]
-}
-</script>
 </head>
 <body>
 
@@ -637,28 +490,6 @@ window.sendMsg = function() {
           <div class="lp-step-desc">Clear explanations with exam tips. Also take 10-MCQ tests per subject</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- FAQ (visible + matches schema) -->
-  <section class="lp-section" style="padding-top:0">
-    <div class="lp-eyebrow">FAQ</div>
-    <h2 class="lp-section-h" style="font-size:22px;margin-bottom:16px">Common Questions</h2>
-    <div class="lp-faq-item" onclick="this.classList.toggle('open')">
-      <div class="lp-faq-q"><span>Vion AI क्या है?</span><span class="lp-faq-arrow">▾</span></div>
-      <div class="lp-faq-a"><p>Vion AI भारत का AI मेडिकल ट्यूटर है, Veda AI द्वारा संचालित। यह 9 मेडिकल स्ट्रीम्स के 100+ विषयों में हिंदी और अंग्रेजी दोनों में instant, exam-ready जवाब देता है।</p></div>
-    </div>
-    <div class="lp-faq-item" onclick="this.classList.toggle('open')">
-      <div class="lp-faq-q"><span>MBBS के लिए Hindi में AI tutor कौन सा अच्छा है?</span><span class="lp-faq-arrow">▾</span></div>
-      <div class="lp-faq-a"><p>Vion AI, MBBS के 19 विषयों को हिंदी और अंग्रेजी दोनों में कवर करता है — voice, PDF input और subject-wise MCQ टेस्ट के साथ।</p></div>
-    </div>
-    <div class="lp-faq-item" onclick="this.classList.toggle('open')">
-      <div class="lp-faq-q"><span>कौन-कौन से मेडिकल स्ट्रीम्स कवर होते हैं?</span><span class="lp-faq-arrow">▾</span></div>
-      <div class="lp-faq-a"><p>MBBS/MD, Nursing, Pharmacy, BDS/Dental, Physiotherapy, BAMS/Ayurveda, Homeopathy, Paramedical, और General Health — कुल 9 स्ट्रीम्स।</p></div>
-    </div>
-    <div class="lp-faq-item" onclick="this.classList.toggle('open')">
-      <div class="lp-faq-q"><span>Vion AI का प्राइस क्या है?</span><span class="lp-faq-arrow">▾</span></div>
-      <div class="lp-faq-a"><p>Free plan हमेशा मुफ्त — रोज़ 5 सवाल (ad देखकर +5 और)। Premium ₹200/महीना — unlimited सवाल, no ads, priority speed, PDF + Voice input।</p></div>
     </div>
   </section>
 
@@ -753,9 +584,9 @@ window.sendMsg = function() {
   <!-- FOOTER -->
   <div class="lp-foot">
     <div class="lp-foot-links">
-      <a href="#" onclick="event.preventDefault();openPage('privPage')">Privacy</a>
-      <a href="#" onclick="event.preventDefault();openPage('termsPage')">Terms</a>
-      <a href="#" onclick="event.preventDefault();openPage('contactPage')">Contact</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
     </div>
     <div class="lp-foot-copy">© 2026 Vion AI · Powered by Veda AI 🇮🇳</div>
   </div>
@@ -1331,22 +1162,10 @@ function adminManualRemove(e) {
 // ORIGINAL APP CODE
 // ============================================================
 
-// ── Supabase Init (guarded — never crashes the whole script) ──
+// ── Supabase Init ────────────────────────────────────────────
 const SUPA_URL = 'https://rnmovgktobwyrifwrrji.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJubW92Z2t0b2J3eXJpZndycmppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNTg1NTIsImV4cCI6MjA5NzkzNDU1Mn0.3iI_TZ4Q6awJ6rcJaTjBqtmPOgL36npGyDImfzN4ARo';
-let sb = null;
-function initSupabase() {
-  try {
-    if (window.supabase && window.supabase.createClient) {
-      sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
-      return true;
-    }
-  } catch(e) { console.error('Supabase init failed:', e); }
-  return false;
-}
-initSupabase();
-// Retry once after a short delay in case CDN was still loading
-if (!sb) setTimeout(initSupabase, 800);
+const sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
 
 let premiumEmails = [];
 let isPremiumUser = false;
@@ -1368,7 +1187,7 @@ function showAuthFromLanding() {
 }
 
 // Check existing session on load
-if (sb) sb.auth.getSession().then(({ data: { session } }) => {
+sb.auth.getSession().then(({ data: { session } }) => {
   if (session?.user?.email) {
     // Already logged in — skip landing + auth, go to app
     currentUserEmail = session.user.email;
@@ -1392,7 +1211,7 @@ if (sb) sb.auth.getSession().then(({ data: { session } }) => {
 });
 
 // Magic link से वापस आने पर auto-login
-if (sb) sb.auth.onAuthStateChange((event, session) => {
+sb.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session?.user?.email) {
     currentUserEmail = session.user.email;
     localStorage.setItem('userEmail', currentUserEmail);
@@ -1417,7 +1236,6 @@ async function handleSignup() {
   const btn = document.getElementById('authSendBtn');
   const email = input.value.trim().toLowerCase();
   if (!email || !email.includes('@') || !email.includes('.')) {
-    errEl.textContent = '⚠️ Valid email डालो (@ होना चाहिए)';
     errEl.classList.add('show');
     input.focus();
     return;
@@ -1425,33 +1243,17 @@ async function handleSignup() {
   errEl.classList.remove('show');
   btn.textContent = '⏳ भेज रहे हैं...';
   btn.disabled = true;
-
-  if (!sb) initSupabase();
-  if (!sb) {
-    errEl.textContent = '⚠️ Connection error — page reload करो (नीचे 🔄 दबाओ)';
-    errEl.classList.add('show');
-    btn.textContent = '🚀 Code भेजो →';
-    btn.disabled = false;
-    return;
-  }
-
   try {
-    // Pure OTP flow — no emailRedirectTo, so Supabase sends a code not a magic link
-    const { error } = await sb.auth.signInWithOtp({ email });
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.origin }
+    });
     if (error) throw error;
     document.getElementById('authStep1').style.display = 'none';
     document.getElementById('authStep2').style.display = 'block';
     document.getElementById('otpEmailShow').textContent = email;
   } catch(err) {
-    console.error('Supabase OTP error:', err);
-    let msg = err.message || 'दोबारा try करो';
-    // Translate common Supabase errors to clear Hindi
-    if (/rate limit|too many/i.test(msg)) {
-      msg = '⏳ बहुत ज़्यादा try हो गए — कुछ मिनट रुककर फिर try करो (Rate limit)';
-    } else if (/smtp|email/i.test(msg) && /not configured|failed/i.test(msg)) {
-      msg = '📧 Email service में problem है — Supabase SMTP setting check करो';
-    }
-    errEl.textContent = '⚠️ ' + msg;
+    errEl.textContent = '⚠️ Error: ' + (err.message || 'दोबारा try करो');
     errEl.classList.add('show');
     btn.textContent = '🚀 Code भेजो →';
     btn.disabled = false;
@@ -1469,14 +1271,6 @@ async function verifyOtp() {
   }
   btn.textContent = '⏳ Verify हो रहा है...';
   btn.disabled = true;
-  if (!sb) initSupabase();
-  if (!sb) {
-    errEl.textContent = '⚠️ Connection error — page reload करो';
-    errEl.classList.add('show');
-    btn.textContent = '✅ Verify करो →';
-    btn.disabled = false;
-    return;
-  }
   try {
     const { data, error } = await sb.auth.verifyOtp({ email, token: otp, type: 'email' });
     if (error) throw error;
@@ -1711,4 +1505,510 @@ function watchAd() {
       const countdown = document.getElementById('adCountdown');
       countdown.textContent = t;
       if (countdownInterval) clearInterval(countdownInterval);
-      countdownInterval = setInter
+      countdownInterval = setInterval(() => {
+        t--;
+        countdown.textContent = t;
+        if (t <= 0) {
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+          btn.disabled = false;
+        }
+      }, 1000);
+    } else {
+      adWatchCount = 2;
+      DAILY_LIMIT = 10;
+      saveDailyCount();
+      closeAdModal();
+      alert('🎉 +5 questions added! You now have ' + (DAILY_LIMIT - dailyCount) + ' questions left.');
+    }
+  } else {
+    adWatchCount = 1;
+    DAILY_LIMIT = 10;
+    saveDailyCount();
+    closeAdModal();
+    alert('🎉 +5 questions added! You now have ' + (DAILY_LIMIT - dailyCount) + ' questions left.');
+  }
+  updateUI();
+}
+
+function updateUI() {
+  const uc = document.getElementById('usageCount');
+  const fill = document.getElementById('usageFill');
+  const msg = document.getElementById('upgradeMsg');
+  const cd = document.getElementById('cooldownDisplay');
+  
+  if (!uc) return;
+  
+  if (isPremiumUser) {
+    uc.innerHTML = '♾️ Unlimited';
+    fill.style.width = '100%';
+    msg.innerHTML = '👑 Premium active — unlimited & ad-free';
+    if (cd) cd.style.display = 'none';
+    return;
+  }
+  
+  if (cooldownEndTime && cooldownEndTime > new Date()) {
+    const remaining = Math.ceil((cooldownEndTime - new Date()) / (1000 * 60 * 60));
+    cd.style.display = 'block';
+    cd.innerHTML = `⏳ Cooldown: ${remaining}h remaining · Ask again after 12h`;
+    uc.innerHTML = '⏳ On cooldown';
+    fill.style.width = '100%';
+    fill.style.background = 'var(--red)';
+    msg.innerHTML = `⏳ ${remaining} hours remaining. Come back later!`;
+    return;
+  } else {
+    if (cd) cd.style.display = 'none';
+    fill.style.background = 'var(--grad-main)';
+  }
+  
+  const remaining = DAILY_LIMIT - dailyCount;
+  uc.innerHTML = dailyCount + ' / ' + DAILY_LIMIT;
+  fill.style.width = Math.min((dailyCount/DAILY_LIMIT)*100,100) + '%';
+  
+  if (dailyCount >= DAILY_LIMIT) {
+    if (adWatchCount === 0) {
+      msg.innerHTML = '⚠️ Daily cap hit. <button class="watch-ad-btn" onclick="showAdModal(\'single\')">📺 Watch ad → +5</button> or <a href="#" onclick="showPremium();return false">Go Pro →</a>';
+    } else if (adWatchCount === 1) {
+      msg.innerHTML = '⚠️ Daily cap hit again. <button class="watch-ad-btn" onclick="showAdModal(\'double\')">📺 Watch 2 ads → +5</button> or <a href="#" onclick="showPremium();return false">Go Pro →</a>';
+    } else {
+      msg.innerHTML = '⏳ All ads used today. <a href="#" onclick="showPremium();return false">Go Pro →</a>';
+      cd.style.display = 'block';
+      cd.innerHTML = '⏳ Cooldown: 12h · Ask again after 12 hours';
+    }
+  } else {
+    msg.innerHTML = '✨ <b>' + remaining + '</b> questions left today · <a href="#" onclick="showPremium();return false">Go Pro →</a>';
+  }
+}
+
+function upgradeToPremium(plan) {
+  if (plan === 'monthly') {
+    alert('📧 Student Monthly: ₹200/month\n\n✅ Unlimited questions\n✅ No ads\n✅ No cooldown\n⏰ Expires in 30 days\n\n💳 Pay via UPI');
+  } else {
+    alert('📧 Student Yearly: ₹2,200/year (1 month free!)\n\n✅ 13 months for price of 12\n✅ Unlimited questions\n✅ No ads\n✅ No cooldown\n⏰ Expires in 365 days\n\n💳 Pay via UPI');
+  }
+}
+
+function upgradeToCollege() {
+  alert('🏛️ University License: ₹7,00,000/year\n\n✅ Unlimited students\n✅ Custom rollout\n✅ Priority support\n\nEmail: colleges@healthpulse.com');
+}
+
+// -------- LOGO DOUBLE-CLICK TO OPEN ADMIN PANEL --------
+document.getElementById('logoAnim').addEventListener('dblclick', (e) => {
+  e.stopPropagation();
+  if (isAdmin()) {
+    showAdminPanel();
+  } else {
+    alert('🔐 Admin mode not activated.\n\nPlease open the app with:\n?admin=' + SECRET_KEY);
+  }
+});
+
+// -------- SECTORS --------
+var SECTORS = {
+  MBBS:{label:'MBBS / MD',icon:'🏥',color:'#c2ff3d',grad:'linear-gradient(135deg,#c2ff3d,#3df0ff)',desc:'Allopathy · Modern Medicine',
+    subjects:['Anatomy','Physiology','Biochemistry','Pathology','Microbiology','Pharmacology','Forensic Medicine','Community Medicine (PSM)','General Medicine','General Surgery','Obstetrics & Gynaecology','Paediatrics','Orthopaedics','Ophthalmology','ENT','Dermatology & Venereology','Psychiatry','Radiology','Anaesthesia']},
+  Ayurveda:{label:'BAMS / Ayurveda',icon:'🌿',color:'#84cc16',grad:'linear-gradient(135deg,#bef264,#15803d)',desc:'Ayurvedic Medicine · BAMS',
+    subjects:['Padartha Vigyan','Ashtanga Hridayam','Charaka Samhita','Sushruta Samhita','Kriya Sharir','Rachana Sharir','Dravyaguna','Rasa Shastra & Bhaishajya Kalpana','Agad Tantra','Swasthavritta','Kayachikitsa','Panchakarma','Shalya Tantra','Shalakya Tantra','Prasuti Tantra & Striroga','Kaumarbhritya','Manasroga','Prayogik Evam Vidhi Shastra']},
+  Homeopathy:{label:'BHMS / Homeopathy',icon:'💊',color:'#fbbf24',grad:'linear-gradient(135deg,#fbbf24,#b45309)',desc:'Homeopathic Medicine · BHMS',
+    subjects:['Organon of Medicine','Homeopathic Philosophy','Materia Medica','Repertory','Homeopathic Pharmacy','Anatomy','Physiology & Biochemistry','Pathology & Microbiology','Practice of Medicine','Obstetrics & Gynaecology','Paediatrics','Surgery & Allied Specialities','ENT & Ophthalmology','Forensic Medicine & Toxicology','Community Medicine','Case Taking & Miasms','Constitutional Prescribing','Research Methodology']},
+  Nursing:{label:'B.Sc Nursing',icon:'🩺',color:'#ff3df0',grad:'linear-gradient(135deg,#ff3df0,#9d6cff)',desc:'Nursing Science · GNM · B.Sc',
+    subjects:['Anatomy & Physiology','Nutrition & Biochemistry','Nursing Foundations','Psychology','Microbiology','Sociology','Medical-Surgical Nursing','Pharmacology','Pathology','Community Health Nursing','Child Health Nursing','Mental Health Nursing','Midwifery & Obstetric Nursing','Management of Nursing Services','Research & Statistics']},
+  Dental:{label:'BDS / Dental',icon:'🦷',color:'#3df0ff',grad:'linear-gradient(135deg,#3df0ff,#0369a1)',desc:'Dental Surgery · BDS · MDS',
+    subjects:['Oral Anatomy & Histology','General Anatomy','General Physiology & Biochemistry','Dental Materials','General Pathology & Microbiology','General & Dental Pharmacology','Oral Pathology & Oral Microbiology','Conservative Dentistry & Endodontics','Oral & Maxillofacial Surgery','Prosthodontics','Periodontology','Orthodontics','Paediatric Dentistry','Oral Medicine & Radiology','Public Health Dentistry']},
+  Pharmacy:{label:'B.Pharm / Pharmacy',icon:'⚗️',color:'#9d6cff',grad:'linear-gradient(135deg,#a78bfa,#7c3aed)',desc:'Pharmaceutical Sciences · B.Pharm',
+    subjects:['Pharmaceutics','Pharmaceutical Chemistry','Pharmacognosy','Pharmacology','Pharmaceutical Analysis','Medicinal Chemistry','Pharmacokinetics','Biopharmaceutics','Industrial Pharmacy','Hospital & Clinical Pharmacy','Drug Regulatory Affairs','Pharmaceutical Microbiology','Pharmacotherapeutics','Quality Assurance','Pharmaceutical Biotechnology']},
+  Physiotherapy:{label:'BPT / Physiotherapy',icon:'🦴',color:'#ff7a3d',grad:'linear-gradient(135deg,#ff7a3d,#c2410c)',desc:'Physiotherapy · BPT · MPT',
+    subjects:['Anatomy for Physiotherapy','Physiology','Biochemistry','Pathology','Biomechanics','Exercise Therapy','Electrotherapy','Musculoskeletal Physiotherapy','Neurological Physiotherapy','Cardiopulmonary Physiotherapy','Paediatric Physiotherapy','Sports Physiotherapy','Community Rehabilitation','Research Methodology']}
+};
+
+var SUGG = {
+  MBBS:{en:['Explain brachial plexus','Mechanism of beta blockers?','Type 1 vs Type 2 MI difference?','Explain RAAS pathway'],hi:['Brachial plexus explain karo','Beta blockers ka mechanism?','Type 1 aur Type 2 MI mein fark?','RAAS pathway explain karo']},
+  Ayurveda:{en:['Explain Tridosha theory','5 types of Panchakarma?','Properties of Ashwagandha?','Vata dosha imbalance symptoms?'],hi:['Tridosha theory explain karo','Panchakarma ke 5 types?','Ashwagandha ke gun?','Vata dosha imbalance ke symptoms?']},
+  Homeopathy:{en:['Changes in Organon 6th edition?','Sulphur constitutional type?','What is Miasm theory?','How to use Repertory?'],hi:['Organon 6th edition mein kya change hua?','Sulphur constitutional type?','Miasm theory kya hai?','Repertory kaise use karte hain?']},
+  Nursing:{en:['Explain cardiac cycle','5 steps of nursing process?','IV fluid types and uses?','What is Glasgow Coma Scale?'],hi:['Cardiac cycle explain karo','Nursing process ke 5 steps?','IV fluid types aur uses?','Glasgow Coma Scale kya hai?']},
+  Dental:{en:['Dental pulp anatomy?','Gingivitis vs Periodontitis?','Local anesthesia in dentistry?','Tooth development stages?'],hi:['Dental pulp ki anatomy?','Gingivitis aur Periodontitis mein fark?','Dentistry mein local anesthesia?','Teeth development ke stages?']},
+  Pharmacy:{en:['Pharmacokinetics vs Pharmacodynamics?','Zero vs first order kinetics?','Drug interaction examples?','What is bioavailability?'],hi:['Pharmacokinetics vs Pharmacodynamics?','Zero vs first order kinetics?','Drug interaction examples?','Bioavailability kya hoti hai?']},
+  Physiotherapy:{en:['Types of muscle fibers?','What is RICE protocol?','Stroke rehabilitation approach?','What is gait cycle?'],hi:['Muscle fiber ke types?','RICE protocol kya hai?','Stroke rehabilitation?','Gait cycle explain karo']}
+};
+
+var TXT = {
+  en:{hsub:'Pick your medical sector — full syllabus, instant answers, zero cap.',back1:'← Back',pick:'Choose a subject',back2:'Subjects'},
+  hi:{hsub:'Apna medical sector choose karo — पूरा syllabus, instant answers.',back1:'← वापस',pick:'Subject choose karo',back2:'Subjects'}
+};
+
+var lang='en', curSector=null, curSubject=null, chatHist=[];
+
+function setLang(l){
+  lang=l;
+  document.getElementById('lb-en').className='lb'+(l==='en'?' on':'');
+  document.getElementById('lb-hi').className='lb'+(l==='hi'?' on':'');
+  var t=TXT[l];
+  document.getElementById('txt-hsub').innerHTML=t.hsub.replace('medical sector','<b>medical sector</b>');
+  document.getElementById('txt-pick').textContent=t.pick;
+  document.getElementById('txt-back1').textContent=t.back1;
+  document.getElementById('txt-back2').textContent=t.back2;
+}
+
+function show(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  window.scrollTo(0,0);
+}
+
+function showPremium(){ show('pg-premium'); }
+
+(function buildSectors(){
+  var g=document.getElementById('sgrid');
+  Object.keys(SECTORS).forEach(k=>{
+    var v=SECTORS[k];
+    var b=document.createElement('button');
+    b.className='scard';
+    b.style.setProperty('--c-acc', v.color);
+    b.innerHTML='<div class="sc-emoji">'+v.icon+'</div>'+
+      '<div class="sc-label" style="color:'+v.color+'">'+v.label+'</div>'+
+      '<div class="sc-desc">'+v.desc+'</div>'+
+      '<div class="sc-meta"><span>'+v.subjects.length+' subjects</span><span class="sc-arrow" style="background:'+v.grad+'">→</span></div>';
+    b.onclick=()=>openSubject(k);
+    g.appendChild(b);
+  });
+})();
+
+function openSubject(sk){
+  curSector=sk;
+  var s=SECTORS[sk];
+  document.getElementById('sbadge').innerHTML='<div class="sbadge-icon" style="background:'+s.grad+'">'+s.icon+'</div><div><div class="sb-title" style="color:'+s.color+'">'+s.label+'</div><div class="sb-sub">'+s.desc+'</div></div>';
+  var g=document.getElementById('jgrid'); g.innerHTML='';
+  s.subjects.forEach(sub=>{
+    var b=document.createElement('button');
+    b.className='jchip';
+    b.innerHTML='<span class="jchip-bullet" style="background:'+s.color+';color:'+s.color+'"></span>'+xe(sub);
+    b.onclick=()=>openChat(sub);
+    g.appendChild(b);
+  });
+  show('pg-subject');
+}
+
+function openChat(sub){
+  curSubject=sub; chatHist=[]; pendingPDF=null; renderAttachBar();
+  var s=SECTORS[curSector];
+  document.getElementById('ctitle').textContent=s.icon+' '+s.label+' — '+sub;
+  document.getElementById('ctitle').style.color=s.color;
+  document.getElementById('chatLogo').style.background=s.grad;
+  document.getElementById('sb').style.background=s.grad;
+  document.getElementById('ci').placeholder=sub+' — ask · attach PDF · speak ✨';
+  document.getElementById('btn-bk').onclick=()=>openSubject(curSector);
+  renderWelcome();
+  show('pg-chat');
+}
+
+function renderWelcome(){
+  var ca=document.getElementById('ca');
+  var s=SECTORS[curSector];
+  var suggs=(SUGG[curSector]||{})[lang]||[];
+  var btns=suggs.map(q=>'<button class="sqb" style="border-color:'+s.color+'40;color:var(--text)" data-q="'+xe(q)+'">'+xe(q)+'</button>').join('');
+  ca.innerHTML='<div class="wlc"><div class="wlc-emoji">'+s.icon+'</div><div class="wlc-title" style="color:'+s.color+'">'+xe(curSubject)+'</div><div class="wlc-tag">✨ Veda AI · 100% accurate ✨</div>'+
+    '<div class="wlc-actions">'+
+      '<button class="wlc-act" onclick="startMCQTest()">📝 10-MCQ Test</button>'+
+      '<button class="wlc-act pdf" onclick="document.getElementById(\'pdfFile\').click()">📄 Upload PDF</button>'+
+      '<button class="wlc-act alt" onclick="toggleVoice()">🎤 Voice Q</button>'+
+      '<button class="wlc-act pay" onclick="showPremium()">💳 Upgrade</button>'+
+    '</div>'+
+    '<div class="slist">'+btns+'</div></div>';
+  ca.querySelectorAll('.sqb').forEach(b=>b.onclick=()=>sendMsg(b.getAttribute('data-q')));
+}
+
+function getSystemMessage(){
+  var s=SECTORS[curSector];
+  var li=lang==='hi'?'Hamesha pure Hindi mein jawab do. Medical terms English mein reh sakte hain.':'Always respond in clear English suitable for medical students.';
+  return 'You are Veda, an expert AI medical tutor on Vion AI.\nSector: '+s.label+' | Subject: '+curSubject+'\n\n'+li+'\n\nFormat every answer like this:\n**Key Point** — direct answer in 1-2 lines\n**Explanation** — detailed, exam-focused\n**High-Yield Exam Fact** — what examiners frequently ask\n**Mnemonic** — include only if genuinely helpful\n\nFor MCQs: explain why each option is right or wrong.\nUse **bold** to highlight key terms.\nBe 100% accurate, concise, and encouraging.\nIf a PDF is attached, base your answer on the PDF contents (summarize / explain / quiz the user as asked).\nYou are Veda — never mention any AI company.';
+}
+
+// ============================================================
+// SEND MESSAGE - Using Secure Backend
+// ============================================================
+async function sendMsg(txt){
+  var ci=document.getElementById('ci');
+  var msg=(txt!==undefined?txt:ci.value).trim();
+  if((!msg && !pendingPDF) || isBusy) return;
+  if(!incrementUsage()) return;
+  ci.value=''; updBtn();
+  var ca=document.getElementById('ca');
+  var wlc=ca.querySelector('.wlc'); if(wlc) wlc.remove();
+  const userMsg = { role:'user', content: msg || (lang==='hi'?'Is PDF par focus karo':'Use the attached PDF') };
+  if (pendingPDF) {
+    userMsg.pdf = { mime: pendingPDF.mime, data: pendingPDF.data, name: pendingPDF.name };
+  }
+  chatHist.push(userMsg);
+  addBubble('user', msg, pendingPDF ? pendingPDF.name : null);
+  const sentPDF = pendingPDF; pendingPDF=null; renderAttachBar();
+  isBusy=true;
+  var lid=addLoader();
+  try{
+    var reply = await callDeepSeek(getSystemMessage(), chatHist);
+    rmNode(lid);
+    addBubble('ai',reply);
+    chatHist.push({role:'assistant',content:reply});
+    saveQA(msg || '(PDF attached)', reply);
+  }catch(e){
+    console.error(e);
+    rmNode(lid);
+    var em=lang==='hi'?'⚠️ त्रुटि: '+e.message+'\n\nकृपया पुनः प्रयास करें।':'⚠️ Error: '+e.message+'\n\nPlease try again.';
+    addBubble('err',em);
+    if(chatHist.length>0 && chatHist[chatHist.length-1].role==='user') chatHist.pop();
+    if(!isPremiumUser){dailyCount--;saveDailyCount();updateUI();}
+  }
+  isBusy=false; updBtn();
+}
+
+function addBubble(type,text,fileName){
+  var ca=document.getElementById('ca');
+  var s=SECTORS[curSector];
+  var d=document.createElement('div');
+  if(type==='user'){
+    d.className='mrow u';
+    const chip = fileName ? `<div class="file-chip">📄 ${xe(fileName)}</div>` : '';
+    d.innerHTML='<div><div style="text-align:right">'+chip+'</div><div class="ubub" style="background:'+s.grad+'">'+xe(text||'(PDF attached)')+'</div></div>';
+  }else if(type==='err'){
+    d.className='mrow';
+    d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub"><div style="color:#ff7a8a">'+xe(text)+'</div></div>';
+  }else{
+    d.className='mrow';
+    d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub">'+fmtAI(text,s.color)+'</div>';
+  }
+  ca.appendChild(d);
+  ca.scrollTop=ca.scrollHeight;
+}
+
+function addLoader(){
+  var ca=document.getElementById('ca');
+  var s=SECTORS[curSector];
+  var id='ld'+Date.now();
+  var d=document.createElement('div');
+  d.className='mrow'; d.id=id;
+  d.innerHTML='<div class="avc" style="background:'+s.grad+'">V</div><div class="abub"><div class="dots"><span class="dot" style="background:'+s.color+';animation-delay:0s"></span><span class="dot" style="background:'+s.color+';animation-delay:.15s"></span><span class="dot" style="background:'+s.color+';animation-delay:.3s"></span></div></div>';
+  ca.appendChild(d);
+  ca.scrollTop=ca.scrollHeight;
+  return id;
+}
+
+function rmNode(id){var e=document.getElementById(id); if(e) e.remove();}
+
+function fmtAI(t,c){
+  return t.split('\n').map(l=>{
+    if(/^\*\*[^*]+\*\*/.test(l)) return '<div class="h3" style="color:'+c+'">'+inl(l,c)+'</div>';
+    if(/^[-•] /.test(l)) return '<div class="li">'+inl(l.slice(2),c)+'</div>';
+    if(/^\d+\.\s/.test(l)) return '<div class="li">'+inl(l,c)+'</div>';
+    if(l.trim()==='') return '<div style="height:6px"></div>';
+    return '<div class="pp">'+inl(l,c)+'</div>';
+  }).join('');
+}
+
+function inl(t,c){ return xe(t).replace(/\*\*(.*?)\*\*/g,'<strong style="color:'+c+'">$1</strong>'); }
+
+function xe(s){ return String(s).replace(/[&<>]/g,function(m){ return m==='&'?'&amp;':m==='<'?'&lt;':'>'; }); }
+
+function updBtn(){ document.getElementById('sb').disabled=(!document.getElementById('ci').value.trim() && !pendingPDF) || isBusy; }
+
+// ============================================================
+// PDF Upload
+// ============================================================
+document.getElementById('pdfFile').addEventListener('change', async (e)=>{
+  const file = e.target.files[0]; if (!file) return;
+  if (file.type !== 'application/pdf') { alert('Please pick a PDF file.'); return; }
+  if (file.size > 15*1024*1024) { alert('PDF too large (max 15 MB).'); return; }
+  const b64 = await fileToBase64(file);
+  pendingPDF = { name: file.name, mime:'application/pdf', data: b64 };
+  renderAttachBar();
+  const ci=document.getElementById('ci');
+  if (!ci.value.trim()) { ci.value = lang==='hi' ? 'Is PDF ko summarize karo aur key exam points nikalo.' : 'Summarize this PDF and pull out the key exam points.'; updBtn(); }
+  e.target.value='';
+});
+
+function fileToBase64(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(',')[1]); r.onerror=rej; r.readAsDataURL(file); }); }
+
+function renderAttachBar(){
+  const bar = document.getElementById('attachBar'); if (!bar) return;
+  bar.innerHTML = pendingPDF ? `<span class="attach-pill">📄 ${xe(pendingPDF.name)} <span class="x" onclick="clearPDF()">×</span></span>` : '';
+}
+
+function clearPDF(){ pendingPDF=null; renderAttachBar(); }
+
+// ============================================================
+// Voice Input
+// ============================================================
+let recognition=null, isRecording=false;
+
+function toggleVoice(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('Voice input not supported in this browser. Try Chrome.'); return; }
+  if (isRecording) { recognition && recognition.stop(); return; }
+  recognition = new SR();
+  recognition.lang = lang === 'hi' ? 'hi-IN' : 'en-US';
+  recognition.interimResults = true;
+  recognition.continuous = false;
+  const ci = document.getElementById('ci');
+  const startText = ci.value;
+  recognition.onstart = ()=>{ isRecording=true; document.getElementById('micBtn').classList.add('rec'); };
+  recognition.onend = ()=>{ isRecording=false; document.getElementById('micBtn').classList.remove('rec'); };
+  recognition.onerror = (ev)=>{ isRecording=false; document.getElementById('micBtn').classList.remove('rec'); console.warn('voice',ev); };
+  recognition.onresult = (ev)=>{
+    let txt='';
+    for (let i=0;i<ev.results.length;i++) txt += ev.results[i][0].transcript;
+    ci.value = (startText ? startText+' ' : '') + txt;
+    updBtn();
+  };
+  recognition.start();
+}
+
+// ============================================================
+// MCQ TEST - Using Secure Backend
+// ============================================================
+let mcqState = null;
+
+async function startMCQTest(){
+  if (!curSector || !curSubject) { alert(lang==='hi'?'Pehle ek subject choose karein.':'Please pick a subject first.'); return; }
+  if (!incrementUsage()) return;
+  const s=SECTORS[curSector];
+  document.getElementById('mcqTitle').textContent = s.icon+' '+s.label+' — '+curSubject;
+  document.getElementById('mcqLogo').style.background = s.grad;
+  document.getElementById('mcqBody').innerHTML = `<div class="mcq-card" style="text-align:center"><div style="font-size:36px;margin-bottom:8px">📝</div><div style="font-weight:800;font-size:18px;margin-bottom:6px">${lang==='hi'?'10 MCQ generate ho rahe hain…':'Generating 10 MCQs…'}</div><div style="color:var(--sub);font-size:13px">${xe(curSubject)} · ${lang==='hi'?'thoda intezaar':'a moment'}</div><div class="dots" style="justify-content:center;margin-top:14px"><span class="dot" style="background:${s.color}"></span><span class="dot" style="background:${s.color};animation-delay:.15s"></span><span class="dot" style="background:${s.color};animation-delay:.3s"></span></div></div>`;
+  show('pg-mcq');
+  try {
+    const langInstr = lang==='hi' ? 'Questions Hinglish (Hindi+English medical terms) mein likhein.' : 'Questions in clear English.';
+    const prompt = `Generate exactly 10 high-quality MCQs for ${s.label} → ${curSubject}.
+${langInstr}
+Each MCQ must be syllabus-relevant, exam-style, with 4 options (A,B,C,D), exactly one correct.
+Mix difficulty: 4 easy, 4 medium, 2 hard.
+Cover different topics within the subject — do NOT repeat the same concept.
+Return ONLY valid JSON, no markdown, this exact shape:
+{"questions":[{"q":"question text","options":["A text","B text","C text","D text"],"correct":0,"explanation":"why the correct option is right (1-2 lines)"}]}
+"correct" is the 0-based index. Provide exactly 10 items.`;
+    
+    const raw = await generateMCQ(prompt);
+    let parsed;
+    try { parsed = JSON.parse(raw); }
+    catch(e){ const m = raw.match(/\{[\s\S]*\}/); parsed = m ? JSON.parse(m[0]) : null; }
+    if (!parsed || !Array.isArray(parsed.questions) || parsed.questions.length < 1) throw new Error('Could not parse MCQs');
+    mcqState = { questions: parsed.questions.slice(0,10), idx: 0, score: 0, answers: [] };
+    renderMCQ();
+  } catch(e){
+    document.getElementById('mcqBody').innerHTML = `<div class="mcq-card"><div style="color:#ff7a8a;font-weight:700">⚠️ ${xe(e.message)}</div><button class="mcq-next show" onclick="startMCQTest()">↻ Retry</button></div>`;
+    if(!isPremiumUser){dailyCount--;saveDailyCount();updateUI();}
+  }
+}
+
+function renderMCQ(){
+  const body = document.getElementById('mcqBody');
+  const total = mcqState.questions.length;
+  if (mcqState.idx >= total) { renderMCQResult(); return; }
+  const q = mcqState.questions[mcqState.idx];
+  const pct = (mcqState.idx / total) * 100;
+  const letters = ['A','B','C','D','E'];
+  const opts = (q.options||[]).map((o,i)=>`<button class="mcq-opt" data-i="${i}"><span class="letter">${letters[i]}</span><span>${xe(o)}</span></button>`).join('');
+  body.innerHTML = `
+    <div class="mcq-progress">
+      <div class="mcq-prog-bar"><div class="mcq-prog-fill" style="width:${pct}%"></div></div>
+      <div class="mcq-prog-txt">${mcqState.idx+1} / ${total}</div>
+    </div>
+    <div class="mcq-card">
+      <div class="mcq-qnum">${lang==='hi'?'Sawaal':'Question'} ${mcqState.idx+1}</div>
+      <div class="mcq-q">${xe(q.q)}</div>
+      <div class="mcq-opts" id="mcqOpts">${opts}</div>
+      <div class="mcq-expl" id="mcqExpl"></div>
+      <button class="mcq-next" id="mcqNext" onclick="nextMCQ()">${lang==='hi'?'Agla sawaal →':'Next question →'}</button>
+    </div>`;
+  body.querySelectorAll('.mcq-opt').forEach(b=>b.onclick = ()=>pickMCQ(parseInt(b.dataset.i)));
+}
+
+function pickMCQ(i){
+  const q = mcqState.questions[mcqState.idx];
+  const correct = Number(q.correct);
+  const btns = document.querySelectorAll('#mcqOpts .mcq-opt');
+  btns.forEach((b,bi)=>{
+    b.disabled = true;
+    if (bi === correct) b.classList.add('correct');
+    else if (bi === i) b.classList.add('wrong');
+  });
+  const isRight = i === correct;
+  if (isRight) mcqState.score++;
+  mcqState.answers.push({ q:q.q, picked:i, correct, right:isRight });
+  const ex = document.getElementById('mcqExpl');
+  ex.innerHTML = `<b>${isRight ? (lang==='hi'?'✅ Sahi!':'✅ Correct!') : (lang==='hi'?'❌ Galat.':'❌ Wrong.')}</b> ${xe(q.explanation||'')}`;
+  ex.classList.add('show');
+  document.getElementById('mcqNext').classList.add('show');
+  if (mcqState.idx === mcqState.questions.length - 1) {
+    document.getElementById('mcqNext').textContent = lang==='hi' ? 'Result dekhein 🎯' : 'See result 🎯';
+  }
+}
+
+function nextMCQ(){ mcqState.idx++; renderMCQ(); }
+
+function renderMCQResult(){
+  const body = document.getElementById('mcqBody');
+  const total = mcqState.questions.length;
+  const score = mcqState.score;
+  const pct = Math.round((score/total)*100);
+  let grade, tag;
+  if (pct >= 90) { grade='🔥 Outstanding!'; tag=lang==='hi'?'Tu toh topper hai!':"You're a topper!"; }
+  else if (pct >= 70) { grade='💪 Great work!'; tag=lang==='hi'?'Bahut badhiya, thoda aur push.':'Solid — keep pushing.'; }
+  else if (pct >= 50) { grade='📈 Keep going'; tag=lang==='hi'?'Revision karke wapas aao.':'Revise and retake.'; }
+  else { grade='📚 Needs revision'; tag=lang==='hi'?'Concepts dohraen, phir test do.':'Brush up concepts and retry.'; }
+  body.innerHTML = `<div class="mcq-result">
+    <div class="mcq-score">${score}<small>/${total}</small></div>
+    <div class="mcq-grade">${grade}</div>
+    <div class="mcq-tag">${xe(tag)} · ${pct}%</div>
+    <div class="mcq-acts">
+      <button class="primary" onclick="startMCQTest()">↻ ${lang==='hi'?'Naya test':'New test'}</button>
+      <button class="secondary" onclick="exitMCQ()">${lang==='hi'?'Chat par wapas':'Back to chat'}</button>
+    </div>
+  </div>`;
+}
+
+function exitMCQ(){ mcqState=null; show('pg-chat'); }
+
+// ============================================================
+// INIT
+// ============================================================
+if (!checkAuth()) { /* wait */ } else { fetchPremiumList(); }
+
+document.getElementById('ci').addEventListener('input',updBtn);
+document.getElementById('ci').addEventListener('keydown',function(e){
+  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMsg(); }
+});
+document.getElementById('sb').onclick=function(){ sendMsg(); };
+
+// EXPOSE GLOBALS
+window.upgradeToPremium = upgradeToPremium;
+window.upgradeToCollege = upgradeToCollege;
+window.showPremium = showPremium;
+window.setLang = setLang;
+window.show = show;
+window.logoutUser = logoutUser;
+window.adminAddEmail = adminAddEmail;
+window.adminRemoveEmail = adminRemoveEmail;
+window.adminManualRemove = adminManualRemove;
+window.closeAdminPanel = closeAdminPanel;
+window.watchAd = watchAd;
+window.closeAdModal = closeAdModal;
+window.showAdModal = showAdModal;
+window.startMCQTest = startMCQTest;
+window.nextMCQ = nextMCQ;
+window.exitMCQ = exitMCQ;
+window.toggleVoice = toggleVoice;
+window.clearPDF = clearPDF;
+window.downloadData = downloadData;
+window.isAdmin = isAdmin;
+window.showAdminPanel = showAdminPanel;
+window.initiatePayment = initiatePayment;
+window.processPayment = processPayment;
+window.selectUPI = selectUPI;
+window.checkPremiumExpiry = checkPremiumExpiry;
+
+console.log('🚀 HealthPulse Pro loaded (SECURE - no API key in frontend!)');
+console.log('🔐 Admin mode: ' + (isAdmin() ? 'ACTIVE' : 'inactive'));
+console.log('📌 To activate admin: add ?admin=' + SECRET_KEY + ' to the URL');
+console.log('💳 UPI Payment: Integrated');
+console.log('👑 Premium: Auto-activation with expiry (30/365 days)');
+console.log('⏰ Auto-expiry: Active');
+</script>
+</body>
+</html>
