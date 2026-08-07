@@ -408,7 +408,57 @@
   .lp-foot-links{display:flex;gap:18px}
   .lp-foot-links a{font-size:11px;color:#5a5a72;font-family:'Outfit';text-decoration:none}
   .lp-foot-copy{font-size:11px;color:#3a3a52;font-family:'JetBrains Mono'}
+
+  /* ══ LEGAL & CONTACT PAGES ══ */
+  .lp-page{position:fixed;inset:0;z-index:99999;background:#050508;overflow-y:auto;display:none;flex-direction:column}
+  .lp-page.open{display:flex}
+  .lp-page-nav{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(5,5,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .lp-page-back{background:transparent;border:1.5px solid rgba(255,255,255,.12);color:#f0f0f5;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit'}
+  .lp-page-title{font-size:15px;font-weight:800;font-family:'Outfit';color:#f0f0f5}
+  .lp-page-body{padding:28px 20px 60px;max-width:660px;margin:0 auto;width:100%}
+  .lp-page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(194,255,61,.07);border:1px solid rgba(194,255,61,.2);color:#c2ff3d;font-size:10px;font-family:'JetBrains Mono';font-weight:700;letter-spacing:.12em;padding:5px 12px;border-radius:99px;margin-bottom:14px;text-transform:uppercase}
+  .lp-page-h1{font-size:26px;font-weight:900;font-family:'Outfit';color:#f0f0f5;margin-bottom:8px}
+  .lp-page-date{font-size:11px;color:#5a5a72;font-family:'JetBrains Mono';display:block;margin-bottom:22px}
+  .lp-page-sec{margin-bottom:14px;background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:18px}
+  .lp-page-sec h2{font-size:14px;font-weight:700;color:#c2ff3d;margin-bottom:10px;font-family:'Outfit'}
+  .lp-page-sec p,.lp-page-sec li{font-size:13px;color:#9090b8;line-height:1.75;font-family:'Outfit'}
+  .lp-page-sec ul{padding-left:18px;margin-top:6px}
+  .lp-page-sec li{margin-bottom:5px}
+  .lp-page-sec a{color:#c2ff3d;text-decoration:none}
+  .lp-hi{background:rgba(194,255,61,.06);border:1px solid rgba(194,255,61,.15);border-radius:10px;padding:12px;margin-top:10px}
+  .lp-hi p{font-size:13px;color:#d0d0f0;line-height:1.6}
+  .cc-card{background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:10px}
+  .cc-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .cc-lbl{font-size:10px;color:#5a5a72;font-family:'JetBrains Mono';margin-bottom:3px;letter-spacing:.08em}
+  .cc-val{font-size:14px;font-weight:700;color:#f0f0f5;font-family:'Outfit'}
+  .cc-in{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);color:#f0f0f5;padding:12px 16px;border-radius:14px;font-size:14px;font-family:'Outfit';outline:none;box-sizing:border-box;margin-bottom:10px}
+  .cc-in::placeholder{color:rgba(255,255,255,.2)}
+  .cc-ta{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);color:#f0f0f5;padding:12px 16px;border-radius:14px;font-size:14px;font-family:'Outfit';outline:none;resize:vertical;min-height:110px;box-sizing:border-box;margin-bottom:10px}
+  .cc-send{width:100%;background:linear-gradient(135deg,#c2ff3d,#00e5ff);border:none;color:#000;padding:14px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Outfit'}
+  /* ══ VISIBLE FAQ (matches JSON-LD schema) ══ */
+  .lp-faq-item{background:#0d0d18;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:border-color .2s}
+  .lp-faq-item:hover{border-color:rgba(194,255,61,.25)}
+  .lp-faq-q{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .lp-faq-q span:first-child{font-size:14px;font-weight:700;color:#f0f0f5;font-family:'Outfit';line-height:1.4}
+  .lp-faq-arrow{font-size:14px;color:#c2ff3d;flex-shrink:0;transition:transform .25s}
+  .lp-faq-item.open .lp-faq-arrow{transform:rotate(180deg)}
+  .lp-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .lp-faq-item.open .lp-faq-a{max-height:220px;margin-top:12px}
+  .lp-faq-a p{font-size:13px;color:#9090b8;line-height:1.7;font-family:'Outfit'}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Vion AI क्या है?","acceptedAnswer":{"@type":"Answer","text":"Vion AI भारत का AI मेडिकल ट्यूटर है, Veda AI द्वारा संचालित। यह MBBS, BAMS, BDS, Nursing, Pharmacy, Physiotherapy, Homeopathy और Paramedical जैसे 9 मेडिकल स्ट्रीम्स के 100+ विषयों में हिंदी और अंग्रेजी दोनों में instant, exam-ready जवाब देता है।"}},
+    {"@type":"Question","name":"MBBS के लिए Hindi में AI tutor कौन सा अच्छा है?","acceptedAnswer":{"@type":"Answer","text":"Vion AI MBBS students के लिए हिंदी और अंग्रेजी दोनों में सपोर्ट देने वाला AI tutor है। यह 19 MBBS विषयों को कवर करता है, voice और PDF input स्वीकार करता है, और हर विषय के लिए 10-प्रश्नों वाला MCQ टेस्ट भी देता है।"}},
+    {"@type":"Question","name":"Vion AI कौन-कौन से मेडिकल स्ट्रीम्स को कवर करता है?","acceptedAnswer":{"@type":"Answer","text":"Vion AI 9 मेडिकल स्ट्रीम्स को कवर करता है: MBBS/MD (19 विषय), Nursing (14 विषय), Pharmacy (11 विषय), BDS/Dental (17 विषय), Physiotherapy (13 विषय), BAMS/Ayurveda (15 विषय), Homeopathy (16 विषय), Paramedical (10 विषय), और General Health।"}},
+    {"@type":"Question","name":"Vion AI का प्राइस क्या है?","acceptedAnswer":{"@type":"Answer","text":"Vion AI का Free plan हमेशा के लिए मुफ्त है, रोज़ाना 5 सवाल के साथ (ad देखकर 5 और मिलते हैं)। Premium plan ₹200/महीना है, जिसमें unlimited सवाल, no ads, priority speed, और PDF + Voice input मिलता है।"}},
+    {"@type":"Question","name":"Vion AI कैसे काम करता है?","acceptedAnswer":{"@type":"Answer","text":"तीन आसान स्टेप्स में: पहले अपना field और subject चुनें। फिर voice या text में कोई भी सवाल पूछें — PDF नोट्स भी अपलोड कर सकते हैं। अंत में instant, exam-ready जवाब पाएं, साथ में हर subject के लिए 10-MCQ टेस्ट भी उपलब्ध है।"}}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -584,9 +634,9 @@
   <!-- FOOTER -->
   <div class="lp-foot">
     <div class="lp-foot-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
+      <a href="#" onclick="event.preventDefault();openLPPage('privPage')">Privacy</a>
+      <a href="#" onclick="event.preventDefault();openLPPage('termsPage')">Terms</a>
+      <a href="#" onclick="event.preventDefault();openLPPage('contactPage')">Contact</a>
     </div>
     <div class="lp-foot-copy">© 2026 Vion AI · Powered by Veda AI 🇮🇳</div>
   </div>
@@ -2009,6 +2059,117 @@ console.log('📌 To activate admin: add ?admin=' + SECRET_KEY + ' to the URL');
 console.log('💳 UPI Payment: Integrated');
 console.log('👑 Premium: Auto-activation with expiry (30/365 days)');
 console.log('⏰ Auto-expiry: Active');
+
+window.openLPPage = function(id){
+  var el=document.getElementById(id);
+  if(el){el.classList.add('open');el.scrollTop=0;}
+};
+window.closeLPPage = function(id){
+  var el=document.getElementById(id);
+  if(el)el.classList.remove('open');
+};
+window.sendLPMsg = function(){
+  var n=document.getElementById('lpCName').value.trim();
+  var e=document.getElementById('lpCEmail').value.trim();
+  var s=document.getElementById('lpCSubject').value.trim();
+  var m=document.getElementById('lpCMsg').value.trim();
+  if(!n||!e||!m){alert('Name, email aur message zaroori hai!');return;}
+  var ml='mailto:vionai.pvt.ltd@gmail.com?subject='+encodeURIComponent(s||'Message from '+n)+'&body='+encodeURIComponent('From: '+n+' ('+e+')\n\n'+m);
+  window.location.href=ml;
+  document.getElementById('lpCSuccess').style.display='block';
+};
 </script>
+
+<!-- PRIVACY PAGE -->
+<div id="privPage" class="lp-page">
+  <nav class="lp-page-nav">
+    <button class="lp-page-back" onclick="closeLPPage('privPage')">← Back</button>
+    <span class="lp-page-title">Privacy Policy</span>
+    <span style="width:80px"></span>
+  </nav>
+  <div class="lp-page-body">
+    <div class="lp-page-badge">🔒 Privacy Policy</div>
+    <div class="lp-page-h1">Your Privacy Matters</div>
+    <span class="lp-page-date">Last updated: July 1, 2026 · vionai.in</span>
+    <div class="lp-page-sec"><h2>1. Who We Are</h2><p>Vion AI is an AI-powered medical education platform at <a href="https://vionai.in">vionai.in</a>, based in Rajkot, Gujarat, India.<br>Email: <a href="mailto:vionai.pvt.ltd@gmail.com">vionai.pvt.ltd@gmail.com</a></p></div>
+    <div class="lp-page-sec"><h2>2. What We Collect</h2><ul><li><b style="color:#f0f0f5">Email</b> — for OTP login only</li><li><b style="color:#f0f0f5">Usage Data</b> — questions asked, subjects used</li><li><b style="color:#f0f0f5">Payment Data</b> — processed by Razorpay. We never store card details</li></ul><div class="lp-hi"><p>🔒 We do NOT collect your name, phone number, Aadhaar, PAN, or any sensitive personal data.</p></div></div>
+    <div class="lp-page-sec"><h2>3. How We Use Your Data</h2><ul><li>To send OTP login codes</li><li>To provide and improve Vion AI</li><li>To manage your premium subscription</li><li>To analyze usage and improve AI responses</li></ul></div>
+    <div class="lp-page-sec"><h2>4. Third-Party Services</h2><ul><li><b style="color:#f0f0f5">Supabase</b> — authentication (GDPR compliant)</li><li><b style="color:#f0f0f5">Razorpay</b> — payments (PCI-DSS compliant)</li><li><b style="color:#f0f0f5">OpenRouter / DeepSeek</b> — AI responses</li><li><b style="color:#f0f0f5">Render.com</b> — secure hosting</li></ul></div>
+    <div class="lp-page-sec"><h2>5. Your Rights</h2><p>You can request access, deletion, or export of your data anytime. Email: <a href="mailto:vionai.pvt.ltd@gmail.com">vionai.pvt.ltd@gmail.com</a></p></div>
+    <div class="lp-page-sec"><h2>6. Cookies</h2><p>We use minimal cookies for session management only. No tracking or advertising cookies.</p></div>
+    <div class="lp-page-sec"><h2>7. Contact</h2><p>Privacy questions: <a href="mailto:vionai.pvt.ltd@gmail.com">vionai.pvt.ltd@gmail.com</a></p></div>
+  </div>
+</div>
+
+<!-- TERMS PAGE -->
+<div id="termsPage" class="lp-page">
+  <nav class="lp-page-nav">
+    <button class="lp-page-back" onclick="closeLPPage('termsPage')">← Back</button>
+    <span class="lp-page-title">Terms of Service</span>
+    <span style="width:80px"></span>
+  </nav>
+  <div class="lp-page-body">
+    <div class="lp-page-badge">📋 Terms of Service</div>
+    <div class="lp-page-h1">Terms of Service</div>
+    <span class="lp-page-date">Last updated: July 1, 2026 · vionai.in</span>
+    <div class="lp-page-sec"><h2>1. Acceptance</h2><p>By using Vion AI at vionai.in, you agree to these Terms. If you disagree, please do not use our service.</p></div>
+    <div class="lp-page-sec"><h2>2. Service Description</h2><p>Vion AI provides AI-powered medical education content for students.</p><div class="lp-hi"><p>⚠️ Vion AI is for EDUCATIONAL PURPOSES ONLY. It is NOT a substitute for professional medical advice. Always consult a qualified doctor for health concerns.</p></div></div>
+    <div class="lp-page-sec"><h2>3. User Accounts</h2><ul><li>Valid email required for signup</li><li>One account per person — account sharing not allowed</li><li>You must be 13 years or older</li><li>Keep your account secure</li></ul></div>
+    <div class="lp-page-sec"><h2>4. Plans & Pricing</h2><ul><li><b style="color:#f0f0f5">Free:</b> 5 questions/day</li><li><b style="color:#f0f0f5">Premium Monthly:</b> ₹200/month — Unlimited questions</li><li><b style="color:#f0f0f5">Premium Annual:</b> ₹999/year — Unlimited questions + savings</li></ul></div>
+    <div class="lp-page-sec"><h2>5. Refund Policy</h2><ul><li>Full refund within 7 days of first purchase</li><li>No refunds after renewal has been processed</li><li>To request refund: email <a href="mailto:vionai.pvt.ltd@gmail.com">vionai.pvt.ltd@gmail.com</a> with your Razorpay payment ID</li><li>Refunds processed within 5-7 business days</li></ul></div>
+    <div class="lp-page-sec"><h2>6. Prohibited Uses</h2><ul><li>Commercial redistribution of AI-generated content</li><li>Scraping, reverse-engineering, or hacking the platform</li><li>Sharing accounts with others</li><li>Spreading medical misinformation</li></ul></div>
+    <div class="lp-page-sec"><h2>7. Disclaimer</h2><p>Vion AI strives for accuracy but cannot guarantee all information is error-free. Always verify with current textbooks and qualified professionals.</p></div>
+    <div class="lp-page-sec"><h2>8. Governing Law</h2><p>These terms are governed by Indian law. Disputes fall under jurisdiction of courts in Rajkot, Gujarat, India.</p></div>
+    <div class="lp-page-sec"><h2>9. Contact</h2><p>Questions: <a href="mailto:vionai.pvt.ltd@gmail.com">vionai.pvt.ltd@gmail.com</a></p></div>
+  </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contactPage" class="lp-page">
+  <nav class="lp-page-nav">
+    <button class="lp-page-back" onclick="closeLPPage('contactPage')">← Back</button>
+    <span class="lp-page-title">Contact Us</span>
+    <span style="width:80px"></span>
+  </nav>
+  <div class="lp-page-body">
+    <div class="lp-page-badge">💬 Get in Touch</div>
+    <div class="lp-page-h1">We'd love to hear from you.</div>
+    <span class="lp-page-date" style="color:#7070a0">Questions, feedback, partnerships — we're here! 🙌</span>
+    <div class="cc-card">
+      <div class="cc-icon" style="background:rgba(194,255,61,.1)">📧</div>
+      <div><div class="cc-lbl">EMAIL (FASTEST)</div><div class="cc-val"><a href="mailto:vionai.pvt.ltd@gmail.com" style="color:#c2ff3d;text-decoration:none">vionai.pvt.ltd@gmail.com</a></div></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-icon" style="background:rgba(0,229,255,.1)">🌐</div>
+      <div><div class="cc-lbl">WEBSITE</div><div class="cc-val">vionai.in</div></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-icon" style="background:rgba(157,108,255,.1)">📍</div>
+      <div><div class="cc-lbl">LOCATION</div><div class="cc-val">Rajkot, Gujarat, India</div></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-icon" style="background:rgba(255,165,0,.1)">⏰</div>
+      <div><div class="cc-lbl">RESPONSE TIME</div><div class="cc-val">Usually within 24 hours</div></div>
+    </div>
+    <div class="lp-page-sec" style="margin-top:16px">
+      <h2>Send a Message</h2>
+      <input type="text" class="cc-in" placeholder="Your Name" id="lpCName">
+      <input type="email" class="cc-in" placeholder="Your Email" id="lpCEmail">
+      <input type="text" class="cc-in" placeholder="Subject" id="lpCSubject">
+      <textarea class="cc-ta" placeholder="Your message..." id="lpCMsg"></textarea>
+      <button class="cc-send" onclick="sendLPMsg()">Send Message →</button>
+      <p id="lpCSuccess" style="color:#c2ff3d;font-size:13px;text-align:center;margin-top:10px;font-family:Outfit,sans-serif;display:none">✅ Email app खुलेगा — Send करो!</p>
+    </div>
+    <div class="lp-page-sec">
+      <h2>Specific Queries</h2>
+      <ul>
+        <li><b style="color:#f0f0f5">Support:</b> <a href="mailto:vionai.pvt.ltd@gmail.com?subject=Technical Support">vionai.pvt.ltd@gmail.com</a></li>
+        <li><b style="color:#f0f0f5">Billing/Refund:</b> <a href="mailto:vionai.pvt.ltd@gmail.com?subject=Billing">vionai.pvt.ltd@gmail.com</a></li>
+        <li><b style="color:#f0f0f5">Partnership:</b> <a href="mailto:vionai.pvt.ltd@gmail.com?subject=Partnership">vionai.pvt.ltd@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
