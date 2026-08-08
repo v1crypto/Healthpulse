@@ -23,106 +23,105 @@ const SUPA_URL         = 'https://rnmovgktobwyrifwrrji.supabase.co';
 const SUPA_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 // ══════════════════════════════════════════════════════
-// BLOG SYSTEM — असली, substantive content for students
-// हर post की अपनी URL है — Google इन्हें अलग-अलग index करेगा
+// BLOG SYSTEM — English content for global reach
 // ══════════════════════════════════════════════════════
 
 const BLOG_POSTS = {
   'mbbs-first-year-study-guide': {
-    title: 'MBBS First Year में कैसे Study करें — Complete Guide 2026',
-    description: 'MBBS पहले साल के लिए Anatomy, Physiology, Biochemistry पढ़ने का सही तरीका, Time-table, और Exam की तैयारी की पूरी Guide।',
+    title: 'How to Study in MBBS First Year — Complete Guide 2026',
+    description: 'The right way to study Anatomy, Physiology, and Biochemistry in MBBS first year, with a daily timetable and exam preparation strategy.',
     date: 'August 1, 2026',
     readTime: '8 min read',
     tag: 'MBBS',
     content: `
-      <p>MBBS का पहला साल हर student के लिए सबसे मुश्किल होता है — नया environment, भारी syllabus, और Anatomy जैसे subjects जो school में कभी नहीं पढ़े। यह guide उन students के लिए है जो अभी शुरुआत कर रहे हैं।</p>
+      <p>The first year of MBBS is the hardest transition for most students — a new environment, a heavy syllabus, and subjects like Anatomy that you've never encountered in school. This guide is for students who are just getting started.</p>
 
-      <h2>1. तीन Core Subjects को समझो</h2>
-      <p>First year में तीन subjects होते हैं: <strong>Anatomy, Physiology, और Biochemistry</strong>। इनमें से Anatomy सबसे ज़्यादा समय लेता है क्योंकि इसमें Dissection Hall की practical classes भी होती हैं।</p>
-      <p>एक common गलती यह है कि students तीनों subjects को बराबर समय देते हैं। असल में Anatomy को कम से कम 40% समय देना चाहिए, बाकी दो को 30-30%।</p>
+      <h2>1. Understand the Three Core Subjects</h2>
+      <p>First year MBBS revolves around three subjects: <strong>Anatomy, Physiology, and Biochemistry</strong>. Of these, Anatomy takes up the most time because it includes practical Dissection Hall sessions alongside theory.</p>
+      <p>A common mistake is giving all three subjects equal time. In reality, Anatomy deserves at least 40% of your study time, with Physiology and Biochemistry splitting the remaining 60%.</p>
 
-      <h2>2. Daily Study Routine</h2>
-      <p>College के दिनों में यह routine काम करता है:</p>
+      <h2>2. Build a Daily Study Routine</h2>
+      <p>During college days, this routine tends to work well:</p>
       <ul>
-        <li><strong>सुबह College से पहले:</strong> पिछले दिन की classes revise करो (30 मिनट)</li>
-        <li><strong>College के बाद:</strong> उसी दिन की Anatomy/Physiology/Biochem नोट्स बनाओ (2 घंटे)</li>
-        <li><strong>रात को:</strong> weak topics पर focus करो, MCQ practice करो (1 घंटा)</li>
+        <li><strong>Before college:</strong> Revise the previous day's lecture notes (30 minutes)</li>
+        <li><strong>After college:</strong> Make fresh notes on that day's Anatomy/Physiology/Biochem topics (2 hours)</li>
+        <li><strong>At night:</strong> Focus on weak topics and practice MCQs (1 hour)</li>
       </ul>
 
-      <h2>3. Diagrams बनाना सीखो</h2>
-      <p>Anatomy और Physiology में diagrams बनाना सिर्फ marks के लिए नहीं है — यह चीज़ों को समझने और याद रखने का सबसे तेज़ तरीका है। हर topic पढ़ने के बाद उसका diagram अपने शब्दों में बनाने की कोशिश करो, किताब देखे बिना।</p>
+      <h2>3. Learn to Draw Diagrams</h2>
+      <p>Drawing diagrams in Anatomy and Physiology isn't just for exam marks — it's one of the fastest ways to actually understand and retain information. After studying each topic, try recreating its diagram from memory, without looking at the book.</p>
 
-      <h2>4. Group Study बनाम Solo Study</h2>
-      <p>Anatomy के bones और Biochemistry के pathways group में पढ़ना आसान होता है — एक दूसरे से पूछ सकते हो। लेकिन Physiology के mechanisms को शांति से अकेले समझना बेहतर रहता है।</p>
+      <h2>4. Group Study vs. Solo Study</h2>
+      <p>Anatomy's bones and Biochemistry's metabolic pathways are easier to memorize in a group — you can quiz each other. But Physiology's mechanisms are usually better understood quietly, on your own, without distractions.</p>
 
-      <h2>5. Hindi में समझना ठीक है</h2>
-      <p>बहुत सारे students यह गलती करते हैं कि सब कुछ अंग्रेज़ी में ही समझने की कोशिश करते हैं, भले ही concept क्लियर न हो। अगर कोई मुश्किल topic पहले Hindi में समझ आए, फिर अंग्रेज़ी में उसकी terminology याद करो — यह ज़्यादा असरदार तरीका है और exam में भी अंग्रेज़ी में ही लिखना होता है, इसलिए दोनों भाषाओं में comfort ज़रूरी है।</p>
+      <h2>5. Don't Rush Past Language Comfort</h2>
+      <p>Many students make the mistake of forcing themselves to understand everything in English immediately, even when the concept isn't clear. If a difficult topic makes more sense when you first think it through in your native language, do that — then switch to English terminology once the concept clicks. Exams require English answers, so building comfort in both matters, but understanding always comes first.</p>
 
-      <h2>6. MCQ Practice रोज़ करो</h2>
-      <p>सिर्फ पढ़ना काफी नहीं है — हर subject के हर topic के बाद 10-15 MCQs solve करो। इससे पता चलता है कि actually समझ आया या सिर्फ पढ़ा गया।</p>
+      <h2>6. Practice MCQs Every Day</h2>
+      <p>Reading alone isn't enough — after every topic in every subject, solve 10-15 MCQs. This is the fastest way to find out whether you actually understood the material or just read through it.</p>
 
       <h2>Conclusion</h2>
-      <p>MBBS का first year मुश्किल ज़रूर है, लेकिन एक structured routine और सही approach से यह manageable बन जाता है। रोज़ थोड़ा-थोड़ा पढ़ना, exam से पहले रात भर जागने से कहीं बेहतर काम करता है।</p>
+      <p>MBBS first year is genuinely tough, but a structured routine and the right approach make it manageable. Studying a little every day consistently beats cramming the night before an exam, every single time.</p>
     `
   },
   'bams-vs-mbbs-career-guide': {
-    title: 'BAMS vs MBBS: कौन सा Course आपके लिए सही है?',
-    description: 'BAMS और MBBS के बीच अंतर, Career Opportunities, Salary, और कौन सा course किसके लिए बेहतर है — पूरी जानकारी।',
+    title: 'BAMS vs MBBS: Which Course Is Right for You?',
+    description: 'A complete comparison of BAMS and MBBS — course structure, career opportunities, salary potential, and how to decide which path fits you.',
     date: 'August 3, 2026',
     readTime: '7 min read',
     tag: 'Career',
     content: `
-      <p>हर साल लाखों students NEET देने के बाद यह decision लेते हैं — MBBS करें या BAMS। दोनों ही Medical fields हैं, लेकिन इनकी approach, career path, और opportunities काफी अलग हैं।</p>
+      <p>Every year, lakhs of students face this exact decision after NEET — should they pursue MBBS or BAMS? Both are legitimate medical fields, but their approach, career trajectory, and opportunities differ significantly.</p>
 
-      <h2>Course की बनावट में अंतर</h2>
-      <p><strong>MBBS</strong> Modern (Allopathic) Medicine पर based है — 5.5 साल का course जिसमें Surgery, Medicine, Pharmacology जैसे subjects होते हैं, western medical science के according।</p>
-      <p><strong>BAMS</strong> (Bachelor of Ayurvedic Medicine and Surgery) पारंपरिक Ayurveda पर based है, लेकिन साथ में modern Anatomy और Physiology भी पढ़ाई जाती है। यह भी 5.5 साल का course है जिसमें 1 साल की internship शामिल है।</p>
+      <h2>Course Structure Differences</h2>
+      <p><strong>MBBS</strong> is based on Modern (Allopathic) Medicine — a 5.5-year course covering Surgery, Medicine, and Pharmacology according to Western medical science principles.</p>
+      <p><strong>BAMS</strong> (Bachelor of Ayurvedic Medicine and Surgery) is rooted in traditional Ayurveda, but also includes modern Anatomy and Physiology. It's also a 5.5-year course, including a mandatory 1-year internship.</p>
 
-      <h2>Admission Cut-off में अंतर</h2>
-      <p>MBBS के लिए Government colleges में NEET का cut-off बहुत ज़्यादा होता है (Top ranks चाहिए)। BAMS के लिए cut-off comparatively कम होता है, जिससे यह उन students के लिए एक अच्छा option बनता है जिनका MBBS में सीधा admission नहीं हो पाता।</p>
+      <h2>Admission Cut-off Differences</h2>
+      <p>MBBS cut-offs in government colleges via NEET are extremely competitive — you need top ranks. BAMS cut-offs are comparatively lower, making it a solid option for students who don't secure direct MBBS admission.</p>
 
       <h2>Career Opportunities</h2>
-      <p>MBBS डॉक्टर modern hospitals, clinics में practice करते हैं, आगे MD/MS करके specialist बन सकते हैं। सैलरी और growth ज़्यादा होती है, लेकिन competition भी ज़्यादा है।</p>
-      <p>BAMS डॉक्टर Ayurvedic clinics खोल सकते हैं, Government Ayurvedic hospitals में काम कर सकते हैं, Panchakarma centers चला सकते हैं। India में Ayurveda को लेकर awareness तेज़ी से बढ़ रही है, जिससे यह field भी अच्छी growth दिखा रहा है।</p>
+      <p>MBBS doctors practice in modern hospitals and clinics, and can pursue MD/MS to specialize further. Earning potential and growth are generally higher, but so is the competition.</p>
+      <p>BAMS doctors can open Ayurvedic clinics, work in government Ayurvedic hospitals, or run Panchakarma centers. Awareness and demand for Ayurveda in India is growing rapidly, and this field is showing strong growth as a result.</p>
 
-      <h2>कौन सा Course चुनें?</h2>
-      <p>अगर आपकी रुचि modern medicine, surgery, और western treatment methods में है — MBBS सही रहेगा। अगर आप natural healing, Ayurveda के principles में believe करते हैं, और holistic approach पसंद है — BAMS एक बेहतरीन option है।</p>
-      <p>एक common गलतफहमी यह है कि BAMS को "second choice" समझा जाता है। असल में यह एक पूरी तरह अलग और valuable medical science है, न कि MBBS का सस्ता विकल्प।</p>
+      <h2>How Should You Decide?</h2>
+      <p>If your interest lies in modern medicine, surgery, and Western treatment methods — MBBS is the right fit. If you believe in natural healing principles rooted in Ayurveda and prefer a holistic approach — BAMS is an excellent option.</p>
+      <p>A common misconception is treating BAMS as a "backup" or "second choice." In reality, it's a completely distinct and valuable medical science, not a cheaper alternative to MBBS.</p>
 
       <h2>Conclusion</h2>
-      <p>दोनों courses अपनी जगह पूरी तरह valid career paths हैं। Decision लेते वक्त सिर्फ cut-off marks नहीं, बल्कि अपनी genuine रुचि को देखना ज़रूरी है — क्योंकि आगे 5.5 साल इसी field में पढ़ना है।</p>
+      <p>Both courses are entirely valid career paths in their own right. When deciding, look beyond just the cut-off marks — consider your genuine interest, because you'll be spending 5.5 years deeply immersed in this field.</p>
     `
   },
   'nursing-exam-preparation-tips': {
-    title: 'Nursing Exams की तैयारी कैसे करें — Practical Tips',
-    description: 'GNM, B.Sc Nursing students के लिए Exam preparation, Time management, और Clinical practice की tips।',
+    title: 'How to Prepare for Nursing Exams — Practical Tips',
+    description: 'Exam preparation, time management, and clinical practice tips for GNM and B.Sc Nursing students.',
     date: 'August 5, 2026',
     readTime: '6 min read',
     tag: 'Nursing',
     content: `
-      <p>Nursing की पढ़ाई सिर्फ theory नहीं है — theory के साथ-साथ practical clinical skills भी उतनी ही ज़रूरी हैं। यह combination अक्सर students के लिए time management को मुश्किल बना देता है।</p>
+      <p>Nursing education isn't just theory — clinical hands-on skills matter just as much. This combination often makes time management one of the biggest challenges nursing students face.</p>
 
-      <h2>Theory और Practical का Balance</h2>
-      <p>Nursing students का सबसे बड़ा challenge यह होता है कि Hospital duty के बाद theory पढ़ने की energy नहीं बचती। इसके लिए यह तरीका असरदार है:</p>
+      <h2>Balancing Theory and Practical Work</h2>
+      <p>The biggest struggle for nursing students is having no energy left for theory after a full hospital duty shift. This approach tends to work well:</p>
       <ul>
-        <li>Duty के दौरान जो cases देखो, उनसे related topic उसी दिन पढ़ो — जैसे अगर IV Cannulation किया, तो उसी रात related theory revise करो</li>
-        <li>Weekly off के दिन heavy subjects (जैसे Medical-Surgical Nursing) के लिए रखो</li>
+        <li>Study the related theory topic the same day as your duty — for example, if you performed IV Cannulation, revise the related theory that same night while it's fresh</li>
+        <li>Reserve your weekly off day for heavier subjects like Medical-Surgical Nursing</li>
       </ul>
 
-      <h2>Core Subjects पर Focus</h2>
-      <p>Nursing में Anatomy-Physiology, Medical-Surgical Nursing, Community Health Nursing, और Pharmacology सबसे ज़्यादा weightage वाले subjects हैं। इन्हें रोज़ थोड़ा-थोड़ा पढ़ना ज़रूरी है, exam के करीब सब कुछ cover करना संभव नहीं होता।</p>
+      <h2>Focus on Core Subjects</h2>
+      <p>Anatomy-Physiology, Medical-Surgical Nursing, Community Health Nursing, and Pharmacology carry the most weightage in nursing exams. These need daily, incremental study — trying to cover everything right before exams simply isn't realistic.</p>
 
-      <h2>Drug Dosage Calculations की Practice</h2>
-      <p>Nursing exams में और असली practice में भी, drug dosage calculation एक ऐसी skill है जिसमें गलती की गुंजाइश नहीं होती। रोज़ 5-10 calculation problems solve करने की आदत डालो — यह exam में confidence भी देता है और असली patient care में भी ज़रूरी है।</p>
+      <h2>Practice Drug Dosage Calculations</h2>
+      <p>In both nursing exams and real clinical practice, drug dosage calculation is a skill where mistakes aren't an option. Build a daily habit of solving 5-10 calculation problems — it builds exam confidence and is genuinely essential for patient safety later.</p>
 
-      <h2>Clinical Postings को Seriously लो</h2>
-      <p>बहुत से students clinical posting को सिर्फ attendance के लिए करते हैं। असल में यहीं से practical knowledge आता है जो theory exam में भी काम आता है — जब आप किसी procedure को खुद करते हो, तो उसकी theory अपने आप याद हो जाती है।</p>
+      <h2>Take Clinical Postings Seriously</h2>
+      <p>Many students treat clinical posting as just an attendance requirement. In reality, this is where practical knowledge comes from, and it directly reinforces theory exam preparation — when you actually perform a procedure yourself, the underlying theory tends to stick automatically.</p>
 
-      <h2>Group Discussion से पहले Self-Study</h2>
-      <p>Case studies और care plans को पहले खुद से try करो, फिर group में discuss करो। सीधे group discussion में जाने से आपको अपनी असली समझ का पता नहीं चलता।</p>
+      <h2>Self-Study Before Group Discussion</h2>
+      <p>Try working through case studies and care plans on your own first, then discuss them in a group. Jumping straight into group discussion without individual effort means you never really find out how well you understand the material on your own.</p>
 
       <h2>Conclusion</h2>
-      <p>Nursing की पढ़ाई में consistency सबसे ज़रूरी है — duty और study का सही balance बनाकर, हर दिन थोड़ा-थोड़ा आगे बढ़ते रहना, आखिरी रात की तैयारी से कहीं बेहतर परिणाम देता है।</p>
+      <p>Consistency is everything in nursing studies — striking the right balance between duty and study, and making steady daily progress, produces far better results than any last-minute cramming session.</p>
     `
   }
 };
@@ -131,7 +130,7 @@ function renderBlogPost(slug) {
   const post = BLOG_POSTS[slug];
   if (!post) return null;
   return `<!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -177,9 +176,9 @@ function renderBlogPost(slug) {
   <div class="meta">${post.date} · ${post.readTime}</div>
   ${post.content}
   <div class="cta">
-    <h3>Vion AI से अभी पूछो 🚀</h3>
-    <p>MBBS, BAMS, BDS, Nursing, Pharmacy — किसी भी सवाल का instant जवाब पाओ, Hindi या English में।</p>
-    <a href="/">Free में शुरू करो →</a>
+    <h3>Ask Vion AI Now 🚀</h3>
+    <p>Get instant answers for MBBS, BAMS, BDS, Nursing, Pharmacy — in Hindi or English.</p>
+    <a href="/">Start Free →</a>
   </div>
 </article>
 </body>
@@ -195,12 +194,12 @@ function renderBlogIndex() {
       <div class="meta">${p.date} · ${p.readTime}</div>
     </a>`).join('');
   return `<!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog · Vion AI — Medical Students के लिए Guides</title>
-<meta name="description" content="MBBS, BAMS, BDS, Nursing students के लिए Study Tips, Career Guides, और Exam Preparation की जानकारी।">
+<title>Blog · Vion AI — Guides for Medical Students</title>
+<meta name="description" content="Study tips, career guides, and exam preparation content for MBBS, BAMS, BDS, and Nursing students.">
 <link rel="canonical" href="https://vionai.in/blog">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -231,7 +230,7 @@ function renderBlogIndex() {
 </nav>
 <div class="hero">
   <h1>Vion AI Blog</h1>
-  <p>Medical students के लिए Study Guides, Career Tips, और Exam Preparation।</p>
+  <p>Study guides, career tips, and exam preparation for medical students.</p>
 </div>
 <div class="posts">${posts}</div>
 </body>
